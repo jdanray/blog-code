@@ -1,5 +1,5 @@
 class DisjointSet:
-  def __init__(self, N):
+	def __init__(self, N):
 		self.id = range(N)
 		self.rank = [1] * N
 	
