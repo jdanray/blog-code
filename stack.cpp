@@ -1,7 +1,7 @@
 template <typename T>
 class Stack {
 private:
-struct Node {
+	struct Node {
 		Node() { next = NULL; }
 		T data;
 		Node* next;
