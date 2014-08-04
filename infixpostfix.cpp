@@ -60,10 +60,10 @@ int executeOperation(string operation, int operand1, int operand2)
  */
 int evaluatePostfix(string expression)
 {
-   string	  token;
+   string     token;
    stack<int> stack;
-   int		  operand1;
-   int		  operand2;
+   int        operand1;
+   int	      operand2;
 
 	for (unsigned int i = 0; i < expression.length(); i++) {
 		token = expression.substr(i, 1);
