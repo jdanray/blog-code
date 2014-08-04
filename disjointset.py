@@ -5,7 +5,7 @@ class DisjointSet:
 	
 	def find(self, x):
 		if self.id[x] != self.id[self.id[x]]:
-			self.id[x] = find(self.id[x])
+			self.id[x] = self.find(self.id[x])
 		return self.id[x]
 		
 	def union(self, x, y):
