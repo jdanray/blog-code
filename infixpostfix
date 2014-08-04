@@ -89,6 +89,7 @@ int evaluatePostfix(string expression)
  * A right parenthesis:		While the top of the stack is not a left parenthesis, 
  *				append the top of the stack to the postfix expression
  * While the stack is unempty, append the top of the stack to the postfix expression.
+ * Returns the postfix expression.
  */
 string infixToPostfix(string infix)
 {
