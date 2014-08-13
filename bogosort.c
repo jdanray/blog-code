@@ -4,7 +4,6 @@
 void shuffle(int*& arr)
 {
     int len = sizeof(arr) / sizeof(arr[0]);
-	
     if (len > 1) 
     {
         for (int i = len - 1; i > 0; i--) 
