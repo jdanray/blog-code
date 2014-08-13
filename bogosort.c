@@ -19,8 +19,8 @@ void shuffle(int*& arr)
 
 void bogosort(int*& arr, int* order)
 {
-  while (arr != order) 
-	{
-    shuffle(arr);
-	}
+    while (arr != order) 
+    {
+        shuffle(arr);
+    }
 }
