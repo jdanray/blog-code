@@ -13,7 +13,7 @@ int main() {
 			for (int i = len - 1; i > 0; i--) 
 			{
 				int temp = arr[i];
-				int r = rand() % (len + 1);
+				int r = rand() % (i + 1);
 				arr[i] = arr[r];
 				arr[r] = temp;
 			}        
