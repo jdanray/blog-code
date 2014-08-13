@@ -7,12 +7,10 @@ def shuffle(arr)
             i -= 1
         end
     end
-    return arr
+    arr
 end
 
-def bogosort(arr, order)
-    while arr != order
-        arr = shuffle(arr)
-    end
-    return arr
+def bogosort(arr)
+    arr = shuffle(arr) until arr == arr.sort
+    arr
 end
