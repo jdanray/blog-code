@@ -25,10 +25,8 @@ class DisjointSet:
 		self.id[xx] = yy
 		return True
 
-"edges is a list of objects of class Edge"
-"n is the number of the graph's vertices"
-function kruskal(edges, n):
-	uf = DisjointSet(n)
+function kruskal(edges, N):
+	uf = DisjointSet(N)
 	trees = []
 	for e in sorted(edges, key=lambda x: x.w): 
 		uf.union(e.u, e.v) and trees.append(e)
