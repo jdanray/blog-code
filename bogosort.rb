@@ -1,3 +1,7 @@
+def inorder(arr)
+    arr == arr.sort
+end
+
 def shuffle(arr)
     i = arr.length - 1
     while i > 0
@@ -9,6 +13,6 @@ def shuffle(arr)
 end
 
 def bogosort(arr)
-    arr = shuffle(arr) until arr == arr.sort
+    arr = shuffle(arr) until inorder(arr)
     arr
 end
