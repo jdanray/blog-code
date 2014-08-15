@@ -5,12 +5,12 @@ private:
 		Node() { next = NULL; }
 		Node* next;
 		T data;
-	} *front, *rear;
+	} *first, *last;
 public:
 	//Initializes the queue
 	Queue() {
-		front = NULL;
-		rear = NULL;
+		first = NULL;
+		last = NULL;
 	}
 	
 	//Deletes all the nodes that have been created
@@ -20,40 +20,40 @@ public:
 		}
 	}
 	
-	//Given data, adds an element with that data to the front of the queue
+	//Given data, adds an element with that data to the first of the queue
 	void enqueue(T d){
 		Node* elem = new Node;
 		elem->data = d;
 	
 		if (empty()) {	
-			front = elem;
+			first = elem;
 		} else {	
-			rear->next = elem;
+			last->next = elem;
 		}
 		
-		rear = elem;
+		last = elem;
 	}
 	
-	//Removes the front element
+	//Removes the first element
 	void dequeue() {
 		if (!empty()) {
-			Node* temp = front;
-			front = front->next;
+			Node* temp = first;
+			first = first->next;
 			delete temp;
 		}
 	}
 	
-	//Returns the data of the front element
+	//Returns the data of the first element
 	T peek() {
 		if (empty()) {
 			throw;
 		} else {
-			return front->data;
+			return first->data;
 		}
 	}
 	
 	//Returns true if the queue is empty
 	bool empty() {
-		return front == NULL;
+		return first == NULL;
 	}	
 };
