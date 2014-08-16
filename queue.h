@@ -34,12 +34,16 @@ public:
 		last = elem;
 	}
 	
-	//Removes the first element
-	void dequeue() {
-		if (!empty()) {
+	//Removes the first element and returns its data
+	T dequeue() {
+		if (empty()) {
+			throw;
+		} else {
+			T d = first->data;
 			Node* temp = first;
 			first = first->next;
 			delete temp;
+			return d;
 		}
 	}
 	
