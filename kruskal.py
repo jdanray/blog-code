@@ -1,7 +1,7 @@
 class Edge:
-	self.u = 0
-	self.v = 0
-	self.w = 0
+	u = 0
+	v = 0
+	w = 0
 
 class DisjointSet:
 	def __init__(self, N):
@@ -25,7 +25,7 @@ class DisjointSet:
 		self.id[xx] = yy
 		return True
 
-function kruskal(edges, N):
+def kruskal(edges, N):
 	uf = DisjointSet(N)
 	trees = []
 	for e in sorted(edges, key=lambda x: x.w): 
