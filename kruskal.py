@@ -1,7 +1,8 @@
 class Edge:
-	u = 0
-	v = 0
-	w = 0
+	def __init__(self, u, v, w):
+		self.u = u
+		self.v = v
+		self.w = w
 
 class DisjointSet:
 	def __init__(self, N):
