@@ -2,7 +2,7 @@ require 'thread'
 
 def match?(t)
 	"fill in with whatever match conditions you want"
-	return false
+	false
 end
 
 def bfs(graph, source)
@@ -21,5 +21,5 @@ def bfs(graph, source)
 			end
 		end
 	end
-	return nil
+	nil
 end
