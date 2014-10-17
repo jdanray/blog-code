@@ -1,6 +1,6 @@
-(DEFUN HANOI (N SRC DEST SPARE)
-(IF (= N 0) NIL
-	(APPEND
-		(HANOI (- N 1) SRC SPARE DEST)
-		(LIST (LIST 'MOVE 'RING N 'FROM SRC 'TO DEST))
-		(HANOI (- N 1) SPARE DEST SRC))))
+(defun hanoi (n src dest spare)
+  (if (= n 0)
+    nil
+    (append (hanoi (1- n) src spare dest)
+            (list (list 'move 'ring n 'from src 'to dest))
+            (hanoi (1- n) spare dest src))))
