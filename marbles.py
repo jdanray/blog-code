@@ -26,18 +26,18 @@ def shortest_path(source):
     p = {}
     p[str(source)] = None
     while not q.empty():
-		u = q.get()
-		if goal(u):
-			path = []
-			while u is not None:
-				path.append(u)
-				u = p[str(u)]
-			return path
-		for v in children(u):
-			if not v in seen:
-				seen.append(v)
-				q.put(v)
-				p[str(v)] = u
+	u = q.get()
+	if goal(u):
+		path = []
+		while u is not None:
+			path.append(u)
+			u = p[str(u)]
+		return path
+	for v in children(u):
+		if not v in seen:
+			seen.append(v)
+			q.put(v)
+			p[str(v)] = u
     return None
 
 def solve(s):
