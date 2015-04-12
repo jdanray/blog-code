@@ -4,10 +4,10 @@ import random
 # returns integers k and q such that (2^k)q = n,
 # where k>0 and q is odd
 def kq(n):
-	q = n / 2
+	q = n >> 1
 	k = 1
 	while q % 2 == 0:
-		q /= 2
+		q = q >> 1
 		k += 1
 	return k, q
 
