@@ -4,7 +4,7 @@ import random
 # returns integers k and q such that (2^k)q = n,
 # where k>0 and q is odd
 def kq(n):
-	q = n >> 1
+	q = n >> 1 # a right shift is equiv to dividing by 2
 	k = 1
 	while q % 2 == 0:
 		q = q >> 1
