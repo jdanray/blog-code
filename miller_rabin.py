@@ -21,8 +21,7 @@ def miller_rabin(n):
 		return False
 	elif n == 2 or n == 3:
 		return True
-	# no even number >2 is prime
-	elif n % 2 == 0:
+	elif n % 2 == 0: # no even number >2 is prime
 		return False
 	k, q = kq(n - 1)
 	a = random.randint(2, n - 2) # 1 < a < n-1
