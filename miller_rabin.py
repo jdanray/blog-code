@@ -1,8 +1,7 @@
 import random
 
 # given an integer n,
-# returns false if n is not prime
-# returns true if n is likely prime
+# return true if n is likely prime
 def miller_rabin(n):
 	# random.randint() will break if n<4
 	# so, handle those cases specially
@@ -23,11 +22,11 @@ def miller_rabin(n):
 		q = q >> 1
 		k += 1
 	
-	# an integer n>3 is prime if,
-	# for all 1 < a < n - 1,
-	# (a^q) % n = 1 or
-	# there exists some 0 <= j < k such that (a^((2^j)*q)) % n = n - 1
-	# if n is prime, then one of the conditions holds true for all 1 < a < n - 1
+	# if an integer n>2 is prime,
+	# then, for all 1 < a < n - 1,
+	# (a^q) % n = 1, or
+	# there exists some 0 <= j < k such that (a^((2^j)*q)) % n = n - 1.
+	# if n is prime, then one of the conditions holds true for all 1 < a < n - 1.
 	# so, if it holds true for a random 1 < a < n - 1,
 	# then we have evidence that n is prime
 	a = random.randint(2, n - 2)
