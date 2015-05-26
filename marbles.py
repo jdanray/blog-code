@@ -45,8 +45,8 @@ def solve(s):
     if not path:
         path = [s]
     while path:
-        v = path.pop()
-        print str(v[0]).rjust(4) + str(v[1]).rjust(4) + str(v[2]).rjust(4)
+        u = path.pop()
+        print str(u[0]).rjust(4) + str(u[1]).rjust(4) + str(u[2]).rjust(4)
     print "============"
 
 solve([6,7,11])
