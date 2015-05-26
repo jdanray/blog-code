@@ -1,7 +1,7 @@
 # given a directed acylic graph,
 # find a linear ordering such that u precedes v
 # for every directed edge uv
-def topo_sort(dag):
+def topo_order(dag):
 	explored = []
 	sorting = []
 
