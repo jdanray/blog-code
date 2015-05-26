@@ -6,12 +6,12 @@ def topo_sort(dag):
 	sorting = []
 
 	def dfs(u):
-	explored.append(u)
- 	if u in dag:
-		for v in dag[u]:
-        		if not v in explored:
-				dfs(v)
-	sorting.insert(0, u)		
+		explored.append(u)
+ 		if u in dag:
+			for v in dag[u]:
+        			if not v in explored:
+					dfs(v)
+		sorting.insert(0, u)		
 
 	for u in dag:
 		if not u in explored:
