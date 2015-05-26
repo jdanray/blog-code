@@ -4,20 +4,20 @@ def goal(node):
     return node[0] == node[1] and node[1] == node[2]
 
 def children(node):
-    next = []
+    children = []
     if node[0] >= node[1]:
-        next += [[node[0] - node[1], node[1] + node[1], node[2]]]
+        children += [[node[0] - node[1], node[1] + node[1], node[2]]]
     if node[0] >= node[2]:
-        next += [[node[0] - node[2], node[1], node[2] + node[2]]]
+        children += [[node[0] - node[2], node[1], node[2] + node[2]]]
     if node[1] >= node[0]:
-        next += [[node[0] + node[0], node[1] - node[0], node[2]]]
+        children += [[node[0] + node[0], node[1] - node[0], node[2]]]
     if node[1] >= node[2]:
-        next += [[node[0], node[1] - node[2], node[2] + node[2]]]
+        children += [[node[0], node[1] - node[2], node[2] + node[2]]]
     if node[2] >= node[0]:
-        next += [[node[0] + node[0], node[1], node[2] - node[0]]]
+        children += [[node[0] + node[0], node[1], node[2] - node[0]]]
     if node[2] >= node[1]:
-        next += [[node[0], node[1] + node[1], node[2] - node[1]]]
-    return next
+        children += [[node[0], node[1] + node[1], node[2] - node[1]]]
+    return children
 
 def shortest_path(source):
     q = Queue.Queue()
