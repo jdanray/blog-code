@@ -1,0 +1,23 @@
+# finds all solutions for the N queen problem
+def queens(N=8, sol=[]):
+	col = len(sol)	# the current column to be solved
+	
+	# all the columns have been solved
+	if col == N: return [sol]
+
+	# build the list of solutions
+	solutions = []
+	for row in range(N):
+		# test whether a queen is already on this row
+		if row in sol: continue
+		
+		# test whether a queen is on this diagonal
+		sol_cols = range(col)
+		if row + col in [sol[c] + c for c in sol_cols]: continue
+		if row - col + N - 1 in [sol[c] - c + N - 1 for c in sol_cols]: continue
+
+		# try this row and recurse
+		for s in queens(N, sol + [row]): 
+			solutions.append(s)
+
+	return solutions
