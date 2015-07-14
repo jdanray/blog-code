@@ -18,7 +18,6 @@ def queens(N=8, sol=[]):
 		if row - col in [sol[c] - c for c in sol_cols]: continue
 
 		# try this row and recurse
-		for s in queens(N, sol + [row]): 
-			solutions.append(s)
+		solutions.extend(queens(N, sol + [row]))
 
 	return solutions
