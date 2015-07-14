@@ -14,7 +14,7 @@ def queens(N=8, sol=[]):
 		# test whether a queen is on this diagonal
 		sol_cols = range(col)
 		if row + col in [sol[c] + c for c in sol_cols]: continue
-		if row - col + N - 1 in [sol[c] - c + N - 1 for c in sol_cols]: continue
+		if row - col in [sol[c] - c for c in sol_cols]: continue
 
 		# try this row and recurse
 		for s in queens(N, sol + [row]): 
