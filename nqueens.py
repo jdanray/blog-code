@@ -6,6 +6,7 @@ def queens(N=8, sol=[]):
 	if col == N: return [sol]
 
 	# build the list of solutions
+	# for each column, iterate over all rows and try the feasible ones
 	solutions = []
 	for row in range(N):
 		# test whether a queen is already on this row
