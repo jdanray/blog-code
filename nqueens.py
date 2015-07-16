@@ -1,4 +1,4 @@
-# finds all solutions for the N queen problem
+# finds all solutions for instances of the N queens problem
 def queens(N=8, sol=[]):
 	col = len(sol)	# the current column to be solved
 	
