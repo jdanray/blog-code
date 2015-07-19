@@ -18,8 +18,8 @@ def gale_shapley(mprefs, wprefs):
 	unengaged_men = Queue.Queue()
 	for m in range(len(mprefs)): unengaged_men.put(m)
 	
-	# until every man is engaged, go down each unengaged man's list of preferences
-	# if a woman is unmatched, match her with the unengaged man
+	# until every man is engaged, each unengaged man proposes to the next woman on his list
+	# if the woman is unmatched, match her with the unengaged man
 	# if she is matched but she prefers the unengaged man to her fiance,
 	# match her with the unengaged man and make her fiancee unengaged
 	while not unengaged_men.empty():
