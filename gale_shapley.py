@@ -25,7 +25,7 @@ def gale_shapley(mprefs, wprefs):
 	while not unengaged_men.empty():
 		man = unengaged_men.get()
 		woman = mprefs[man][next_proposee[man]]
-		next_proposee[man] -= 1
+		next_proposee[man] += 1
 		if matches[woman]:
 			if wprefs.index(man) < wprefs.index(matches[woman]):				
 				unengaged_men.put(matches[woman])
