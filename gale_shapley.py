@@ -20,8 +20,8 @@ def gale_shapley(mprefs, wprefs):
 	
 	# until every man is engaged, each unengaged man proposes to the next woman on his list
 	# if the woman is unmatched, match her with the unengaged man
-	# if she is matched but she prefers the unengaged man to her fiance,
-	# match her with the unengaged man and make her fiancee unengaged
+	# if she is matched but prefers the unengaged man to her fiance,
+	# match her with the unengaged man and make her fiance unengaged
 	while not unengaged_men.empty():
 		man = unengaged_men.get()
 		woman = mprefs[man][next_proposee[man]]
