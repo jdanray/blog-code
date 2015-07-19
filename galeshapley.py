@@ -14,10 +14,8 @@ def galeshapley(mprefs, wprefs):
 			if wprefs.index(man) < wprefs.index(matches[woman]):				
 				unengaged_men.put(matches[woman])
 				matches[woman] = man
-			else:
-				unengaged_men.put(man)
-		else:
-			matches[woman] = man
+			else: unengaged_men.put(man)
+		else: matches[woman] = man
 
 	return matches
 	
