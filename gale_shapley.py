@@ -1,5 +1,3 @@
-import Queue
-
 # given preferences for each man and preferences for each woman,
 # find a stable matching between the men and women
 def gale_shapley(mprefs, wprefs):
@@ -9,28 +7,27 @@ def gale_shapley(mprefs, wprefs):
 	# matches[w] is the man that woman w has accepted
 	matches = [None] * len(wprefs)
 	
-	# if next_proposee[m] = w, then 
+	# if next_woman[m] = w, then 
 	# man m proposes to the wth woman on his list next
 	# initially each man proposes to the zeroth (first) woman on his list
-	next_proposee = [0] * len(mprefs)
+	next_woman = [0] * len(mprefs)
 	
 	# initially every man is unengaged
-	unengaged_men = Queue.Queue()
-	for m in range(len(mprefs)): unengaged_men.put(m)
+	unengaged_men = range(len(mprefs))
 	
 	# until every man is engaged, each unengaged man proposes to the next woman on his list
 	# if the woman is unmatched, match her with the unengaged man
 	# if she is matched but prefers the unengaged man to her fiance,
 	# match her with the unengaged man and make her fiance unengaged
-	while not unengaged_men.empty():
-		man = unengaged_men.get()
-		woman = mprefs[man][next_proposee[man]]
-		next_proposee[man] += 1
+	while unengaged_men:
+		man = unengaged_men.pop(0)
+		woman = mprefs[man][next_woman[man]]
+		next_woman[man] += 1
 		if matches[woman]:
 			if wprefs.index(man) < wprefs.index(matches[woman]):				
-				unengaged_men.put(matches[woman])
+				unengaged_men.append(matches[woman])
 				matches[woman] = man
-			else: unengaged_men.put(man)
+			else: unengaged_men.append(man)
 		else: matches[woman] = man
 
 	return matches
