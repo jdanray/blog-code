@@ -1,11 +1,11 @@
 # given preferences for each man and preferences for each woman,
 # find a stable matching between the men and women
 def gale_shapley(mprefs, wprefs):
-	# gale_shapley(mprefs, wprefs) => matches
+	# gale_shapley(mprefs, wprefs) => matching
 	# mprefs[m] is the list of man m's preferences
 	# wprefs[w] is the list of woman w's preferences	
-	# matches[w] is the man that woman w has accepted
-	matches = [None] * len(wprefs)
+	# matching[w] is the man that woman w has accepted
+	matching = [None] * len(wprefs)
 	
 	# if next_woman[m] = w, then 
 	# man m proposes to the wth woman on his list next
@@ -23,13 +23,13 @@ def gale_shapley(mprefs, wprefs):
 		man = unengaged_men.pop(0)
 		woman = mprefs[man][next_woman[man]]
 		next_woman[man] += 1
-		if matches[woman]:
-			if wprefs.index(man) < wprefs.index(matches[woman]):				
-				unengaged_men.append(matches[woman])
-				matches[woman] = man
+		if matching[woman]:
+			if wprefs.index(man) < wprefs.index(matching[woman]):				
+				unengaged_men.append(matching[woman])
+				matching[woman] = man
 			else: unengaged_men.append(man)
-		else: matches[woman] = man
+		else: matching[woman] = man
 
-	return matches
+	return matching
 	
 print gale_shapley([[0, 1, 2], [2, 1, 0], [1, 0, 2]], [[1, 2, 0], [2, 1, 0], [0, 1, 2]])
