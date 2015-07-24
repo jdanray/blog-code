@@ -1,3 +1,5 @@
+# https://www.reddit.com/r/dailyprogrammer/comments/3efbfh/20150724_challenge_224_hard_langford_strings/
+
 import copy
 
 alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
