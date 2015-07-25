@@ -15,6 +15,7 @@ def langford(n, string):
             s[i] = alphabet[n - 1]
             s[i + 1 + n] = alphabet[n - 1]
             solutions += langford(n - 1, s)
+            
     return map("".join, solutions)
 
 n = 3
