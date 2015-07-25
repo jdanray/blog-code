@@ -13,7 +13,7 @@ def langford(n, string):
         if string[i] == None and string[i + n + 1] == None:
             s = copy.copy(string)
             s[i] = alphabet[n - 1]
-            s[i + 1 + n] = alphabet[n - 1]
+            s[i + n + 1] = alphabet[n - 1]
             solutions += langford(n - 1, s)
             
     return map("".join, solutions)
