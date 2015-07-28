@@ -14,7 +14,7 @@ def gale_shapley(mprefs, wprefs):
 	# matching[w] is the man that woman w has accepted
 	matching = [None] * N
 	
-	# if wranking[w][m] = i, then
+	# if wchoice[w][m] = i, then
 	# man m is woman w's i-th choice
 	# (previously i just used wprefs[w].index(m)
 	# but index() is O(n) in python
