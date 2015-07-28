@@ -19,10 +19,10 @@ def gale_shapley(mprefs, wprefs):
 	# (previously i just used wprefs[w].index(m)
 	# but index() is O(n) in python
 	# with this smarter data structure, the algo is faster)
-	wranking = [[None] * N for _ in range(N)]
+	wchoice = [[None] * N for _ in range(N)]
 	for i, woman in enumerate(wprefs):
 		for j, man in enumerate(woman):
-			wranking[i][man] = j	
+			wchoice[i][man] = j	
 	
 	# if next_woman[m] = w, then 
 	# man m proposes to the w-th woman on his list next
@@ -42,7 +42,7 @@ def gale_shapley(mprefs, wprefs):
 		woman = mprefs[man][next_woman[man]]
 		next_woman[man] += 1
 		if matching[woman]:
-			if wranking[woman][man] < wpranking[woman][matching[woman]]:
+			if wchoice[woman][man] < wchoice[woman][matching[woman]]:
 				unengaged_men.append(matching[woman])
 				matching[woman] = man
 			else: unengaged_men.append(man)
