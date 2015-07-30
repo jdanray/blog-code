@@ -2,7 +2,6 @@
 # find a stable matching between the men and women
 def gale_shapley(mprefs, wprefs):
 	# test whether there are as many men as women
-	# save the number for future use
 	assert(len(mprefs) == len(wprefs))
 	N = len(mprefs)
 
@@ -20,9 +19,9 @@ def gale_shapley(mprefs, wprefs):
 	# but index() is O(n) in python
 	# with this smarter data structure, the algo is faster)
 	wchoice = [[None] * N for _ in range(N)]
-	for i, woman in enumerate(wprefs):
-		for j, man in enumerate(woman):
-			wchoice[i][man] = j	
+	for w, woman in enumerate(wprefs):
+		for m, man in enumerate(woman):
+			wchoice[w][man] = m
 	
 	# if next_woman[m] = w, then 
 	# man m proposes to the w-th woman on his list next
@@ -30,13 +29,12 @@ def gale_shapley(mprefs, wprefs):
 	next_woman = [0] * N
 	
 	# initially every man is unengaged
-	unengaged_men = range(N)
-	
 	# until every man is engaged, each unengaged man proposes to the next woman on his list
 	# if the woman is unmatched, match her with the unengaged man
 	# if she is matched but prefers the unengaged man to her fiance,
 	# match her with the unengaged man and make her fiance unengaged
 	# if neither, the man remains unengaged and moves onto the next woman
+	unengaged_men = range(N)
 	while unengaged_men:
 		man = unengaged_men.pop(0)
 		woman = mprefs[man][next_woman[man]]
