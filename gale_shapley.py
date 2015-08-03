@@ -3,14 +3,14 @@
 def gale_shapley(mprefs, wprefs):
 	# test whether there are as many men as women
 	assert(len(mprefs) == len(wprefs))
-	N = len(mprefs)
-
+	
 	# gale_shapley(mprefs, wprefs) => matching
 	# mprefs[m] is the list of man m's preferences
 	# e.g., if mprefs[0] = [0, 1, 2], then
 	# man 0's preferences are: woman 0 > woman 1 > woman 2
 	# wprefs[w] is the list of woman w's preferences	
 	# matching[w] is the man that woman w has accepted
+	N = len(mprefs)
 	matching = [None] * N
 	
 	# if wchoice[w][m] = i, then
