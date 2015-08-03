@@ -4,7 +4,6 @@ def gale_shapley(mprefs, wprefs):
 	# test whether there are as many men as women
 	assert(len(mprefs) == len(wprefs))
 	
-	# gale_shapley(mprefs, wprefs) => matching
 	# mprefs[m] is the list of man m's preferences
 	# e.g., if mprefs[0] = [0, 1, 2], then
 	# man 0's preferences are: woman 0 > woman 1 > woman 2
@@ -15,7 +14,7 @@ def gale_shapley(mprefs, wprefs):
 	
 	# if wchoice[w][m] = i, then
 	# man m is woman w's i-th choice
-	# (previously i just used wprefs[w].index(m)
+	# (previously I just used wprefs[w].index(m)
 	# but index() is O(n) in python
 	# with this smarter data structure, the algo is faster)
 	wchoice = [[None] * N for _ in range(N)]
