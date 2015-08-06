@@ -63,18 +63,22 @@ print bfs_navigate('origin')
 # DFS RECURSIVE BACKTRACKING SOLUTION
 
 def dfs_navigate(start, shot=0, ammo=0):
+	# you reached the outpost that has supplies
 	if supplies[start]:
 		return [shot]
 
+	# take ammo from outpost you're at
 	ammo += reloads[start]
 	reloads[start] = 0
 
+	# recurse on every possible adjacent outpost
+	# keep track of how many zombies you encountered and
+	# how much ammo you used
 	zombies = []
 	for node in graph[start]:
 		outpost, threats = node
 		if threats <= ammo:
 			zombies += dfs_navigate(outpost, shot + threats, ammo - threats)
-	
 	return zombies
 
 def solve(start):
