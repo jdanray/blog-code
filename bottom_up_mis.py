@@ -14,7 +14,7 @@ def mis(tree, root):
 		children = tree[node]
 		ninc = [m for c in children for m in memo[c]]
 		grandchildren = [w for v in children for w in tree[v]]
-		inc = [root] + [m for g in grandchildren for m in memo[g]]
+		inc = [node] + [m for g in grandchildren for m in memo[g]]
 		memo[node] = max([inc, ninc], key=lambda x: len(x))
 	return memo[root]
 
