@@ -7,17 +7,19 @@
 memo = {}
 
 def max_independent_set(tree, root):
-	# base case: a leaf
-	children = tree[root]
-	if not children: 
-		return [root]
-	
 	# the big idea:
 	# find the maximum independent set of the tree by 
 	# finding the m.i.s. of every subtree below the given root
 	# and either the maximum independent set includes the root or it doesn't
 	# so, you can find the maximum independent set by
 	# comparing the m.i.s. of every subtree while including the root and not including the root
+	
+	# base case: a leaf
+	# a root with empty subtrees is the m.i.s.
+	# because it is the only non-adjacent vertex
+	children = tree[root]
+	if not children: 
+		return [root]
 	
 	# don't solve a subproblem that's already been solved
 	if root in memo:
