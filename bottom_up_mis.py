@@ -1,3 +1,6 @@
+# see https://github.com/jdanray/blog-code/blob/master/top_down_mis.py
+# for details on the problem and the dynamic program that solves it
+
 def bfs(graph, s):
     q = [s]
     order = []
