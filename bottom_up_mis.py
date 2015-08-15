@@ -1,19 +1,23 @@
 # see https://github.com/jdanray/blog-code/blob/master/top_down_mis.py
 # for details on the problem and the dynamic program that solves it
 
-def bfs(graph, s):
-    q = [s]
+# breadth-first traversal
+# stores the nodes in reverse order
+def bft(tree, start):
+    q = [start]
     order = []
     while q:
         u = q.pop(0)
-        order.insert(0, u)
+        order = [u] + order
         for v in tree[u]:
             q.append(v)
     return order
 
+# given a tree and its root,
+# finds the maximum independent set of the tree
 def mis(tree, root):
 	memo = {}
-	for node in bfs(tree, root):
+	for node in bft(tree, root):
 		children = tree[node]
 		ninc = [m for c in children for m in memo[c]]
 		grandchildren = [w for v in children for w in tree[v]]
