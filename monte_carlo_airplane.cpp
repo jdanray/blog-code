@@ -99,7 +99,7 @@ int main(int argc, char** argv)
 	// display the results
 	for (i = 0; i < n; i++)
 	{
-		cout << "Passenger #" << i << " got their assigned seat " << got_seat[i] << " out of ";
+		cout << "Passenger #" << i + 1 << " got their assigned seat " << got_seat[i] << " out of ";
 		cout << num_simulations << " (" << 100.0 * got_seat[i] / num_simulations << "%) times." << endl;
 	}
 
