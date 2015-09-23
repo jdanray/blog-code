@@ -1,5 +1,5 @@
 #include <cstdlib>		// rand(), atoi()
-#include <iostream>		// cout
+#include <iostream>		// cout, cerr
 #include <time.h>		// to seed rand()
 
 using namespace std;
