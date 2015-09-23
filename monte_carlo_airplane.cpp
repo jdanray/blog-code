@@ -53,7 +53,7 @@ int main(int argc, char** argv)
 		for (j = 0; j < n; j++)
 			prev_assigned[j] = false;
 
-    // assign everyone a seat at random
+    		// assign everyone a seat at random
 		for (j = 0; j < n; j++)
 		{
 			// make sure the seat hasn't already been assigned
