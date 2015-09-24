@@ -18,12 +18,12 @@ int main(int argc, char** argv)
 	
 	if (n <= 0 || num_simulations <= 0)
 	{
-		cerr << "Input values must be integers and greater than zero." << endl;
+		cerr << "Input values should be integers and greater than zero." << endl;
 		return -1;
 	}
 	
 	// support vars
-	int i, j, r;
+	int i, j, r, k;
 
 	// got_seat[i] is the number of times that passenger i got their assigned seat
 	// so, if got_seat[2] == 531, then passenger #2 got their assigned seat 531 times
@@ -91,16 +91,30 @@ int main(int argc, char** argv)
 				r = rand() % n;
 				while (occupied[r])
 					r = rand() % n;
+
+                                // occupy the seat
 				occupied[r] = true;
 			}
 		}
 	}
 
-	// display the results
+	// print output
 	for (i = 0; i < n; i++)
 	{
-		cout << "Passenger #" << i + 1 << " got their assigned seat " << got_seat[i] << " out of ";
-		cout << num_simulations << " (" << 100.0 * got_seat[i] / num_simulations << "%) times." << endl;
+                // display results
+                k = i + 1;
+		cout << "Passenger #" << k << " got their assigned seat " << got_seat[i] << " out of ";
+		cout << num_simulations << " (" << 100.0 * got_seat[i] / num_simulations << "%) times.";
+            
+                // display exact probabilities
+                // for k = 1, the probability that passenger k gets their assigned seat is 1/n
+                // for 2 <= k <= n, the probability that passenger k gets their assigned seat is 1 - 1/(n + 2 - k)
+                cout << " (Exact probability: "; 
+                if (k == 1)
+                    cout << (1.0 / n) * 100.0;
+                else
+                    cout << (1 - 1.0 / (n + 2 - k)) * 100.0;
+                cout << "%)" << endl;
 	}
 
 	// clean up
