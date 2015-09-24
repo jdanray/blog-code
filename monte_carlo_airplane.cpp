@@ -111,9 +111,9 @@ int main(int argc, char** argv)
                 // for 2 <= k <= n, the probability that passenger k gets their assigned seat is 1 - 1/(n + 2 - k)
                 cout << " (Exact probability: "; 
                 if (k == 1)
-                    cout << (1.0 / n) * 100.0;
+                    cout << (1.0 / n) * 100;
                 else
-                    cout << (1 - 1.0 / (n + 2 - k)) * 100.0;
+                    cout << (1 - 1.0 / (n + 2 - k)) * 100;
                 cout << "%)" << endl;
 	}
 
