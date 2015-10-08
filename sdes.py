@@ -35,7 +35,7 @@ def ip_inverse(p): return [p[3], p[0], p[2], p[4], p[6], p[1], p[7], p[5]]
 
 # given an 8-bit number n and an 8-bit subkey k, mung them
 def fk(n, k):
-	# Given two bits, bit1 and bit2, return bit1 XOR bit2
+	# given two bits, bit1 and bit2, return bit1 XOR bit2
 	def xor(bit1, bit2): return 0 if bit1 == bit2 else 1
 
 	# given a 4-bit number n and an 8-bit subkey k, mung them
@@ -79,3 +79,12 @@ def encrypt(plaintext, key):
 def decrypt(ciphertext, key):
 	key1, key2 = keygen(key)
 	return ip_inverse(fk(switch(fk(ip(ciphertext), key2)), key1))
+
+# test the system
+from random import randint
+test_cases = 100
+for i in range(test_cases):
+    msg = [randint(0, 1) for i in range(8)]
+    key = [randint(0, 1) for i in range(10)]
+    t = decrypt(encrypt(msg, key), key)
+    assert(t == msg)
