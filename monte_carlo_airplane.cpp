@@ -28,7 +28,7 @@ int main(int argc, char** argv)
 	// got_seat[i] is the number of times that passenger i got their assigned seat
 	// so, if got_seat[2] == 531, then passenger #2 got their assigned seat 531 times
 	int* got_seat = new int[n];
-	for (int i = 0; i < n; i++)
+	for (i = 0; i < n; i++)
 		got_seat[i] = 0;
 
 	// assigned[i] is the seat that passenger i is assigned to
