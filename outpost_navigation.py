@@ -1,9 +1,9 @@
 # https://icpcarchive.ecs.baylor.edu/external/64/6476.pdf
 
-# BFS/DIJKSTRA SOLUTION
-
 # DFS finds every possible solution and then returns the optimal one
 # BFS/Dijkstra is guaranteed to find the optimal solution first, so once you find one solution, you can quit
+
+# BFS/DIJKSTRA SOLUTION
 
 import heapq
 
