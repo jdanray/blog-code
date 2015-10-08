@@ -1,3 +1,5 @@
+# https://icpcarchive.ecs.baylor.edu/external/35/3580.pdf
+
 import Queue
 
 def goal(node):
