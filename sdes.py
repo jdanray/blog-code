@@ -80,7 +80,7 @@ def decrypt(ciphertext, key):
 	key1, key2 = keygen(key)
 	return ip_inverse(fk(switch(fk(ip(ciphertext), key2)), key1))
 
-# test the system
+# test the cryptosystem
 from random import randint
 test_cases = 100
 for i in range(test_cases):
