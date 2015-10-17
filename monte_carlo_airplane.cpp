@@ -57,9 +57,9 @@ int main(int argc, char** argv)
 		for (j = 0; j < n; j++)
 		{
 			// make sure the seat hasn't already been assigned
-			r = rand() % n;
-			while (prev_assigned[r])
+			do {
 				r = rand() % n;
+			} while (prev_assigned[r]);
 
 			// make the assignment
 			prev_assigned[r] = true;
@@ -88,9 +88,9 @@ int main(int argc, char** argv)
 				// because a passenger picks a seat at random,
 				// that seat might already be occupied
 				// so, try until you find an unoccupied one
-				r = rand() % n;
-				while (occupied[r])
+				do {
 					r = rand() % n;
+				} while (occupied[r]);
 
                                 // occupy the seat
 				occupied[r] = true;
