@@ -1,6 +1,6 @@
 #include <time.h>   // to seed rng
 #include <stdlib.h> // srand(), rand()
-#include <stdio.h>
+#include <stdio.h>  // printf
 
 int main()
 {
@@ -23,9 +23,6 @@ int main()
 		do {
 			goat = rand() % NUM_DOORS;
 		} while (goat == prize || goat == choice);
-
-		do goat = rand() % NUM_DOORS; while (goat == prize || goat == choice);
-
 
 		// locate other door
     		for (switch_door = 0; switch_door == goat || switch_door == choice; switch_door++);
