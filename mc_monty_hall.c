@@ -1,4 +1,4 @@
-#include <time.h>   // to seed rng
+#include <time.h>   // to seed the rng
 #include <stdlib.h> // srand(), rand()
 #include <stdio.h>  // printf
 
@@ -6,8 +6,8 @@ int main()
 {
 	const int NUM_DOORS = 3;
 	const int NUM_SIMS = 100000;
-	int prize, choice, goat, switch_door, i;
-	int stay_wins = 0, switch_wins = 0;
+	int prize, choice, goat, change, i;
+	int stay_wins = 0, change_wins = 0;
 
 	srand(time(NULL));
 
@@ -25,17 +25,17 @@ int main()
 		} while (goat == prize || goat == choice);
 
 		// locate other door
-    		for (switch_door = 0; switch_door == goat || switch_door == choice; switch_door++);
+    		for (change = 0; change == goat || change == choice; change++);
 
 		// compute wins
 		if (choice == prize)
       			stay_wins++;
-    		else if (switch_door == prize)
-      			switch_wins++;
+    		else if (change == prize)
+      			change_wins++;
 	}
 
 	printf("%f\n", (1.0 * stay_wins / NUM_SIMS) * 100);
-	printf("%f\n", (1.0 * switch_wins / NUM_SIMS) * 100);
+	printf("%f\n", (1.0 * change_wins / NUM_SIMS) * 100);
   
   	return 0;
 }
