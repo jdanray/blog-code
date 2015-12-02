@@ -6,7 +6,7 @@ int main()
 {
 	const int NUM_DOORS = 3;
 	const int NUM_SIMS = 100000;
-	int prize, choice, goat, change, i;
+	int prize, choice, goat, remaining, i;
 	int stay_wins = 0, change_wins = 0;
 
 	srand(time(NULL));
@@ -24,13 +24,13 @@ int main()
 			goat = rand() % NUM_DOORS;
 		} while (goat == prize || goat == choice);
 
-		// locate other door
-    		for (change = 0; change == goat || change == choice; change++);
+		// locate remaining door
+    		for (remaining = 0; remaining == goat || remaining == choice; remaining++);
 
 		// compute wins
 		if (choice == prize)
       			stay_wins++;
-    		else if (change == prize)
+    		else if (remaining == prize)
       			change_wins++;
 	}
 
