@@ -34,6 +34,7 @@ int main()
       			change_wins++;
 	}
 
+	// report wins
 	printf("%f\n", (1.0 * stay_wins / NUM_SIMS) * 100);
 	printf("%f\n", (1.0 * change_wins / NUM_SIMS) * 100);
   
