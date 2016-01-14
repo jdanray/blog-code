@@ -19,7 +19,11 @@ public class SA_SMTWTP {
   	}
 
   	public static double acceptanceProbability(int currentTardiness, int neighborTardiness, double temperature) {
-    		return Math.exp((currentTardiness - neighborTardiness) / temperature);
+        	if (neighborTardiness <= currentTardiness) { 
+           		return 1;
+		} else { 
+    			return Math.exp((currentTardiness - neighborTardiness) / temperature);
+		}
   	}
 	
   	public static ArrayList<Job> getNeighbor(ArrayList<Job> currentSchedule) {
@@ -67,10 +71,7 @@ public class SA_SMTWTP {
 	  	while (temperature > 1) {
       			neighborSchedule = getNeighbor(currentSchedule);
       			neighborTardiness = totalWeightedTardiness(neighborSchedule);
-      			if (neighborTardiness <= currentTardiness) { 
-           			currentSchedule = neighborSchedule;
-		    		currentTardiness = neighborTardiness;
-      			} else if (acceptanceProbability(currentTardiness, neighborTardiness, temperature) > Math.random()) {
+			if (acceptanceProbability(currentTardiness, neighborTardiness, temperature) > Math.random()) {
         			currentSchedule = neighborSchedule;
 		    		currentTardiness = neighborTardiness;
       			}
