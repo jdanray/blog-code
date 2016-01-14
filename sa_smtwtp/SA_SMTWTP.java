@@ -64,10 +64,11 @@ public class SA_SMTWTP {
 	  	// get the initial schedule's tardiness
 	  	currentTardiness = totalWeightedTardiness(currentSchedule);
 	
-    		// parameters
+    		// define the parameters
 	  	double temperature = 100000;
 	  	double coolingRate = 0.9;
 	
+		// anneal!
 	  	while (temperature > 1) {
       			neighborSchedule = getNeighbor(currentSchedule);
       			neighborTardiness = totalWeightedTardiness(neighborSchedule);
