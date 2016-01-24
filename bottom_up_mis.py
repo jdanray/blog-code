@@ -1,4 +1,5 @@
 # see https://github.com/jdanray/blog-code/blob/master/top_down_mis.py
+# and https://jdanray.wordpress.com/2015/08/06/the-maximum-independent-set-of-a-tree/
 # for details on the problem and the dynamic program that solves it
 
 # breadth-first traversal
