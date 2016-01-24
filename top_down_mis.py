@@ -10,7 +10,7 @@ def max_independent_set(tree, root):
 	# the big idea:
 	# find the maximum independent set of the tree by 
 	# finding the m.i.s. of every subtree below the given root
-	# and either the maximum independent set includes the root or it doesn't
+	# either the maximum independent set includes the root or it doesn't
 	# so, you can find the maximum independent set by
 	# comparing the m.i.s. of every subtree while including the root and not including the root
 	
@@ -26,7 +26,7 @@ def max_independent_set(tree, root):
 		return memo[root]
 	
 	# the maximum independent set not including the root
-	ninc = [m for c in children for m in max_independent_set(tree, c)]
+	exc = [m for c in children for m in max_independent_set(tree, c)]
 	
 	# the maximum independent set including the root
 	# note: if you include the root, then you can't include its children
@@ -36,7 +36,7 @@ def max_independent_set(tree, root):
 	inc = [root] + [m for g in grandchildren for m in max_independent_set(tree, g)]
 	
 	# take the maximum of the two
-	memo[root] = max([inc, ninc], key=lambda x: len(x))
+	memo[root] = max([inc, exc], key=lambda x: len(x))
 	return memo[root]
 
 tree = {0: [1], 1: [2, 3, 4], 3: [], 2: [5, 6], 5: [], 6: [], 4: [7, 8], 7: [], 8: []}
