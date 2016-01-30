@@ -18,14 +18,18 @@ public class SA_SMTWTP {
 	  	return total;
   	}
 
-  	public static double acceptanceProbability(int currentTardiness, int neighborTardiness, double temperature) {
+  	public static boolean acceptNeighbor(int currentTardiness, int neighborTardiness, double temperature) {
         	if (neighborTardiness <= currentTardiness) { 
-           		return 1;
+           		return true;
 		} else { 
-    			return Math.exp((currentTardiness - neighborTardiness) / temperature);
+        		return acceptanceProbability(currentTardiness, neighborTardiness, temperature) > Math.random();
 		}
   	}
 	
+        public static double acceptanceProbability(int currentTardiness, int neighborTardiness, double temperature) {
+                return Math.exp((currentTardiness - neighborTardiness) / temperature);
+  	}
+        
   	public static ArrayList<Job> getNeighbor(ArrayList<Job> currentSchedule) {
     		ArrayList<Job> neighborSchedule;
 
@@ -64,17 +68,16 @@ public class SA_SMTWTP {
 	  	// get the initial schedule's tardiness
 	  	currentTardiness = totalWeightedTardiness(currentSchedule);
 	
-    		// define the parameters
+    		// parameters
 	  	double temperature = 100000;
 	  	double coolingRate = 0.9;
 	
-		// anneal!
 	  	while (temperature > 1) {
-      			neighborSchedule = getNeighbor(currentSchedule);
+                        neighborSchedule = getNeighbor(currentSchedule);
       			neighborTardiness = totalWeightedTardiness(neighborSchedule);
-			if (acceptanceProbability(currentTardiness, neighborTardiness, temperature) > Math.random()) {
-        			currentSchedule = neighborSchedule;
-		    		currentTardiness = neighborTardiness;
+			if (acceptNeighbor(currentTardiness, neighborTardiness, temperature)) {
+                                currentSchedule = neighborSchedule;
+                                currentTardiness = neighborTardiness;
       			}
       			temperature *= coolingRate;
     		}
