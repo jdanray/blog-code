@@ -72,6 +72,7 @@ public class SA_SMTWTP {
 	  	double temperature = 100000;
 	  	double coolingRate = 0.9;
 	
+		// anneal
 	  	while (temperature > 1) {
                         neighborSchedule = getNeighbor(currentSchedule);
       			neighborTardiness = totalWeightedTardiness(neighborSchedule);
