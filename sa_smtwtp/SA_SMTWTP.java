@@ -51,28 +51,28 @@ public class SA_SMTWTP {
 	
 	  	return neighborSchedule;
   	}
-
-  	public static void main(String[] args) {
+        
+        public static ArrayList<Job> anneal() {
     		int currentTardiness;
     		int neighborTardiness;
-	  	ArrayList<Job> currentSchedule;
-    		ArrayList<Job> neighborSchedule;
-                
+    		ArrayList<Job> currentSchedule;
+                ArrayList<Job> neighborSchedule;
+	
+    		// parameters
+	  	double temperature = 100000;
+	  	double coolingRate = 0.9;
+
 	  	// generate an initial random schedule
 	  	currentSchedule = new ArrayList<Job>();
 	  	currentSchedule.add(new Job(100, 10, 15));
 	  	currentSchedule.add(new Job(25, 5, 1));
 	  	currentSchedule.add(new Job(50, 3, 1));
 	  	Collections.shuffle(currentSchedule);
-		
-	  	// get the initial schedule's tardiness
+                
+                // get the initial schedule's tardiness
 	  	currentTardiness = totalWeightedTardiness(currentSchedule);
 	
-    		// parameters
-	  	double temperature = 100000;
-	  	double coolingRate = 0.9;
-	
-		// anneal
+                // anneal
 	  	while (temperature > 1) {
                         neighborSchedule = getNeighbor(currentSchedule);
       			neighborTardiness = totalWeightedTardiness(neighborSchedule);
@@ -81,9 +81,12 @@ public class SA_SMTWTP {
                                 currentTardiness = neighborTardiness;
       			}
       			temperature *= coolingRate;
-    		}
-		
-	  	System.out.println(currentSchedule);
-	  	System.out.println(currentTardiness);
+    		}        
+                
+                return currentSchedule;
+        }
+        
+  	public static void main(String[] args) {
+	  	System.out.println(anneal());
   	}
 }
