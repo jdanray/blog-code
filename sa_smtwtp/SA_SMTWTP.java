@@ -49,11 +49,11 @@ public class SA_SMTWTP {
 	  	}
 	
 	  	// grab two jobs at random
-	  	rand = new Random();
+	  	rand    = new Random();
 	  	jobPos1 = rand.nextInt(neighborSchedule.size());
 	  	jobPos2 = rand.nextInt(neighborSchedule.size());
-	  	job1 = neighborSchedule.get(jobPos1);
-	  	job2 = neighborSchedule.get(jobPos2);
+	  	job1    = neighborSchedule.get(jobPos1);
+	  	job2    = neighborSchedule.get(jobPos2);
 		
 	  	// swap them
 	  	neighborSchedule.set(jobPos1, job2);
