@@ -2,6 +2,7 @@ package sa_smtwtp;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Random;
 
 public class SA_SMTWTP {
 	public static int totalWeightedTardiness(ArrayList<Job> schedule) {
@@ -11,7 +12,7 @@ public class SA_SMTWTP {
 
 	  	for (Job job: schedule) {
       			currentTime += job.getProcessingTime();
-      			tardiness = Math.max(currentTime - job.getDueDate(), 0);
+      			tardiness = Math.max(currentTime - job.getDueTime(), 0);
       			total += job.getWeight() * tardiness;
     		}
 	
@@ -21,8 +22,8 @@ public class SA_SMTWTP {
   	public static boolean acceptNeighbor(int currentTardiness, int neighborTardiness, double temperature) {
         	if (neighborTardiness <= currentTardiness) { 
            		return true;
-		} else { 
-        		return acceptanceProbability(currentTardiness, neighborTardiness, temperature) > Math.random();
+		} else {
+        		return acceptanceProbability(currentTardiness, neighborTardiness, temperature) > (new Random()).nextDouble();
 		}
   	}
 	
@@ -32,6 +33,7 @@ public class SA_SMTWTP {
         
   	public static ArrayList<Job> getNeighbor(ArrayList<Job> currentSchedule) {
     		ArrayList<Job> neighborSchedule;
+                Random         rand;
 
     		// start with a schedule that is exactly the same as the current schedule
 	  	neighborSchedule = new ArrayList<Job>();
@@ -40,8 +42,9 @@ public class SA_SMTWTP {
 	  	}
 	
 	  	// grab two jobs at random
-	  	int jobPos1 = (int) (neighborSchedule.size() * Math.random());
-	  	int jobPos2 = (int) (neighborSchedule.size() * Math.random());
+	  	rand = new Random();
+	  	int jobPos1 = rand.nextInt(neighborSchedule.size());
+	  	int jobPos2 = rand.nextInt(neighborSchedule.size());
 	  	Job job1 = neighborSchedule.get(jobPos1);
 	  	Job job2 = neighborSchedule.get(jobPos2);
 		
@@ -53,8 +56,8 @@ public class SA_SMTWTP {
   	}
         
         public static ArrayList<Job> anneal() {
-    		int currentTardiness;
-    		int neighborTardiness;
+    		int            currentTardiness;
+    		int            neighborTardiness;
     		ArrayList<Job> currentSchedule;
                 ArrayList<Job> neighborSchedule;
 	
