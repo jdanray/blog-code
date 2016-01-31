@@ -3,12 +3,12 @@ package sa_smtwtp;
 public class Job {
 	private int weight;
 	private int processingTime;
-	private int dueDate;
+	private int dueTime;
 	
-	public Job(int weight, int processingTime, int dueDate) {
+	public Job(int weight, int processingTime, int dueTime) {
 		this.weight = weight;
 		this.processingTime = processingTime;
-		this.dueDate = dueDate;
+		this.dueTime = dueTime;
 	}
 
 	public int getWeight() {
@@ -19,7 +19,7 @@ public class Job {
 		return processingTime;
 	}
 	
-	public int getDueDate() {
-		return dueDate;
+	public int getDueTime() {
+		return dueTime;
 	}
 }
