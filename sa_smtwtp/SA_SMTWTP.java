@@ -20,10 +20,13 @@ public class SA_SMTWTP {
   	}
 
   	public static boolean acceptNeighbor(int currentTardiness, int neighborTardiness, double temperature) {
+  		Random rand;
+  		
         	if (neighborTardiness <= currentTardiness) { 
            		return true;
 		} else {
-        		return acceptanceProbability(currentTardiness, neighborTardiness, temperature) > (new Random()).nextDouble();
+			rand = new Random();
+        		return acceptanceProbability(currentTardiness, neighborTardiness, temperature) > rand.nextDouble();
 		}
   	}
 	
