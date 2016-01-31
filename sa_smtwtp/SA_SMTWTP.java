@@ -35,6 +35,10 @@ public class SA_SMTWTP {
   	}
         
   	public static ArrayList<Job> getNeighbor(ArrayList<Job> currentSchedule) {
+  		int            jobPos1;
+  		int            jobPos2;
+  		Job            job1;
+  		Job            job2;
     		ArrayList<Job> neighborSchedule;
                 Random         rand;
 
@@ -46,10 +50,10 @@ public class SA_SMTWTP {
 	
 	  	// grab two jobs at random
 	  	rand = new Random();
-	  	int jobPos1 = rand.nextInt(neighborSchedule.size());
-	  	int jobPos2 = rand.nextInt(neighborSchedule.size());
-	  	Job job1 = neighborSchedule.get(jobPos1);
-	  	Job job2 = neighborSchedule.get(jobPos2);
+	  	jobPos1 = rand.nextInt(neighborSchedule.size());
+	  	jobPos2 = rand.nextInt(neighborSchedule.size());
+	  	job1 = neighborSchedule.get(jobPos1);
+	  	job2 = neighborSchedule.get(jobPos2);
 		
 	  	// swap them
 	  	neighborSchedule.set(jobPos1, job2);
@@ -61,12 +65,14 @@ public class SA_SMTWTP {
         public static ArrayList<Job> anneal() {
     		int            currentTardiness;
     		int            neighborTardiness;
+    		double         temperature;
+    		double         coolingRate;
     		ArrayList<Job> currentSchedule;
                 ArrayList<Job> neighborSchedule;
 	
     		// parameters
-	  	double temperature = 100000;
-	  	double coolingRate = 0.9;
+	  	temperature = 100000;
+	  	coolingRate = 0.9;
 
 	  	// generate an initial random schedule
 	  	currentSchedule = new ArrayList<Job>();
@@ -75,17 +81,17 @@ public class SA_SMTWTP {
 	  	currentSchedule.add(new Job(50, 3, 1));
 	  	Collections.shuffle(currentSchedule);
                 
-                // get the initial schedule's tardiness
+                // compute the initial schedule's tardiness
 	  	currentTardiness = totalWeightedTardiness(currentSchedule);
 	
                 // anneal
 	  	while (temperature > 1) {
-                        neighborSchedule = getNeighbor(currentSchedule);
+                        neighborSchedule  = getNeighbor(currentSchedule);
       			neighborTardiness = totalWeightedTardiness(neighborSchedule);
 			if (acceptNeighbor(currentTardiness, neighborTardiness, temperature)) {
-                                currentSchedule = neighborSchedule;
+                                currentSchedule  = neighborSchedule;
                                 currentTardiness = neighborTardiness;
-      			}
+			}
       			temperature *= coolingRate;
     		}        
                 
