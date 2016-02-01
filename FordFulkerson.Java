@@ -25,7 +25,7 @@ public class FordFulkerson {
             	}
         }
 
-	public static int[] findAugmentingPath(int[][] network, int source, int sink) {
+	public static int[] augmentingPath(int[][] network, int source, int sink) {
 		return breadthFirstSearch(network, source, sink);		
 	} 
         
@@ -97,7 +97,7 @@ public class FordFulkerson {
 			
             	initFlow(flowNetwork.length);
            
-            	while ((path = findAugmentingPath(flowNetwork, source, sink)) != null) {	
+            	while ((path = augmentingPath(flowNetwork, source, sink)) != null) {	
                 	augmentFlow(path, flowNetwork, source, sink);	
             	}
     	}
@@ -142,6 +142,6 @@ public class FordFulkerson {
                 	}
             	}
             	
-            	System.out.println("Flow value: " + flowValue);
+            	System.out.println("Maximum flow value: " + flowValue);
     	}
 }
