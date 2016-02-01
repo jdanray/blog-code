@@ -105,7 +105,8 @@ public class FordFulkerson {
 	public static void main(String[] args) {
                 int     source;
                 int     sink;
-		int     flowValue;
+		int     outflow;
+                int     inflow;
             	int[][] flowNetwork;
             
                 // generate a flow network and designate its source and sink
@@ -116,6 +117,9 @@ public class FordFulkerson {
                 	}	
             	}
             	
+            	source = 0;
+                sink = 5;
+            	
             	flowNetwork[0][1] = 3;
             	flowNetwork[0][2] = 3;
             	flowNetwork[1][2] = 2;
@@ -124,24 +128,24 @@ public class FordFulkerson {
             	flowNetwork[3][4] = 4;
             	flowNetwork[3][5] = 2;
             	flowNetwork[4][5] = 3;
-            	
-                source = 0;
-                sink = 5;
                 
                 // compute the max flow of the network
             	fordFulkerson(flowNetwork, source, sink);
  
                 // display the flow and its value 
-		flowValue = 0;
             	for (int u = 0; u < flow.length; u++) {
                 	for (int v = 0; v < flow[u].length; v++) {
-                    		System.out.println(u + ", " + v + ": " + flow[u][v]);       
- 				if (v == sink) {
- 					flowValue += flow[u][v];
- 				}
+                    		System.out.println("f(" + u + ", " + v + ") = " + flow[u][v]);       
                 	}
             	}
-            	
-            	System.out.println("Maximum flow value: " + flowValue);
+            	                                
+                outflow = 0;
+                inflow = 0;
+                for (int v = 0; v < flow.length; v++) {
+                	outflow += flow[source][v];
+        		inflow += flow[v][source];
+                }
+                
+            	System.out.println("Maximum flow value: " + (outflow - inflow));
     	}
 }
