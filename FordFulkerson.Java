@@ -5,16 +5,6 @@ import java.util.LinkedList;
 public class FordFulkerson {
 	private static int[][] flow;
 
-	public static int residualCapacity(int[][] flowNetwork, int u, int v) {
-		if (flowNetwork[u][v] > 0) {
-			return flowNetwork[u][v] - flow[u][v];
-		} else if (flowNetwork[v][u] > 0) {
-			return flow[v][u];
-		} else {
-			return 0;
-		}
-        }
-		
 	public static void initFlow(int flowSize) {
         	flow = new int[flowSize][flowSize];
 
@@ -56,6 +46,16 @@ public class FordFulkerson {
 		
 		return null;
 	}
+	
+	public static int residualCapacity(int[][] flowNetwork, int u, int v) {
+		if (flowNetwork[u][v] > 0) {
+			return flowNetwork[u][v] - flow[u][v];
+		} else if (flowNetwork[v][u] > 0) {
+			return flow[v][u];
+		} else {
+			return 0;
+		}
+        }
         
         // the residual capacity of a path is the minimum residual capacity over its edges
         public static int residualCapacity(int[] path, int[][] flowNetwork, int source, int sink) {
