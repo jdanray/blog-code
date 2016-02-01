@@ -97,10 +97,8 @@ public class FordFulkerson {
 			
             	initFlow(flowNetwork.length);
            
-            	path = findAugmentingPath(flowNetwork, source, sink);
-            	while (path != null) {	
+            	while ((path = findAugmentingPath(flowNetwork, source, sink)) != null) {	
                 	augmentFlow(path, flowNetwork, source, sink);	
-			path = findAugmentingPath(flowNetwork, source, sink);
             	}
     	}
 	
