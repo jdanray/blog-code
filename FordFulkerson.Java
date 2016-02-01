@@ -117,6 +117,7 @@ public class FordFulkerson {
                     		flowNetwork[u][v] = 0;
                 	}	
             	}
+            	
             	flowNetwork[0][1] = 3;
             	flowNetwork[0][2] = 3;
             	flowNetwork[1][2] = 2;
