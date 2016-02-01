@@ -26,6 +26,7 @@ public class FordFulkerson {
 		boolean[]           seen = new boolean[graph.length];
 		
 		q.add(source);
+		
 		while (!q.isEmpty()) {                    
 			u = q.remove();
 
@@ -34,13 +35,11 @@ public class FordFulkerson {
 			}
 
 			for (int v = 0; v < graph[u].length; v++) {
-                        	if (!seen[v]) {
-                                	if (residualCapacity(graph, u, v) > 0) {                    
-						q.add(v);
-						prev[v] = u;
-						seen[v] = true;
-					}
-                            	}
+                        	if (!seen[v] && residualCapacity(graph, u, v) > 0) {                    
+                                	q.add(v);
+                                	prev[v] = u;
+					seen[v] = true;
+				}
 			}
 		}
 		
