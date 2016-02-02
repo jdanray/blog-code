@@ -1,8 +1,8 @@
-package ford_fulkerson;
+package edmonds_karp;
 
 import java.util.LinkedList;
 
-public class FordFulkerson {
+public class EdmondsKarp {
 	private static int[][] flow;
 
 	public static void initFlow(int flowSize) {
@@ -26,7 +26,6 @@ public class FordFulkerson {
 		boolean[]           seen = new boolean[graph.length];
 		
 		q.add(source);
-		
 		while (!q.isEmpty()) {                    
 			u = q.remove();
 
@@ -36,8 +35,8 @@ public class FordFulkerson {
 
 			for (int v = 0; v < graph[u].length; v++) {
                         	if (!seen[v] && residualCapacity(graph, u, v) > 0) {                    
-                                	q.add(v);
-                                	prev[v] = u;
+                                        q.add(v);
+                                        prev[v] = u;
 					seen[v] = true;
 				}
 			}
@@ -104,47 +103,43 @@ public class FordFulkerson {
 	public static void main(String[] args) {
                 int     source;
                 int     sink;
-		int     outflow;
-                int     inflow;
+                int     flowValue;
             	int[][] flowNetwork;
             
                 // generate a flow network and designate its source and sink
-            	flowNetwork = new int[6][6];
-            	for (int u = 0; u < flowNetwork.length; u++) {
+                flowNetwork = new int[11][11];
+                for (int u = 0; u < flowNetwork.length; u++) {
                 	for (int v = 0; v < flowNetwork[u].length; v++) {
                     		flowNetwork[u][v] = 0;
                 	}	
             	}
-            	
-            	source = 0;
-                sink = 5;
-            	
-            	flowNetwork[0][1] = 3;
-            	flowNetwork[0][2] = 3;
-            	flowNetwork[1][2] = 2;
-            	flowNetwork[1][3] = 3;
-            	flowNetwork[2][4] = 2;
-            	flowNetwork[3][4] = 4;
-            	flowNetwork[3][5] = 2;
-            	flowNetwork[4][5] = 3;
                 
-                // compute the max flow of the network
+                source = 0;
+                sink = 10;               
+                for (int v = 1; v <= 5; v++) flowNetwork[source][v] = 1;
+                for (int u = 6; u <= 9; u++) flowNetwork[u][sink] = 1;
+                flowNetwork[1][6] = 1;
+                flowNetwork[2][6] = 1;
+                flowNetwork[2][8] = 1;
+                flowNetwork[3][8] = 1;
+                flowNetwork[3][9] = 1;
+                flowNetwork[4][8] = 1;
+                flowNetwork[5][8] = 1;
+
+                // compute the maximum flow of the network
             	fordFulkerson(flowNetwork, source, sink);
- 
-                // display the flow and its value 
+                
+                // display the flow and its value
+                flowValue = 0;
             	for (int u = 0; u < flow.length; u++) {
                 	for (int v = 0; v < flow[u].length; v++) {
-                    		System.out.println("f(" + u + ", " + v + ") = " + flow[u][v]);       
+                    		System.out.println("f(" + u + ", " + v + ") = " + flow[u][v]);
+                                if (v == sink) {
+                                    flowValue += flow[u][v];
+                                }
                 	}
             	}
-            	                                
-                outflow = 0;
-                inflow = 0;
-                for (int v = 0; v < flow.length; v++) {
-                	outflow += flow[source][v];
-        		inflow += flow[v][source];
-                }
-                
-            	System.out.println("Maximum flow value: " + (outflow - inflow));
+                                
+            	System.out.println("Maximum flow value: " + flowValue);
     	}
 }
