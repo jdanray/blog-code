@@ -63,16 +63,17 @@ public class SA_SMTWTP {
   	}
         
         public static ArrayList<Job> anneal() {
+        	double defaultTemperature = 100000.0;
+        	double defaultCoolingRate = 0.9;
+        	
+        	return anneal(defaultTemperature, defaultCoolingRate);
+        }
+        
+        public static ArrayList<Job> anneal(double temperature, double coolingRate) {
     		int            currentTardiness;
     		int            neighborTardiness;
-    		double         temperature;
-    		double         coolingRate;
     		ArrayList<Job> currentSchedule;
                 ArrayList<Job> neighborSchedule;
-	
-    		// parameters
-	  	temperature = 100000;
-	  	coolingRate = 0.9;
 
 	  	// generate an initial random schedule
 	  	currentSchedule = new ArrayList<Job>();
