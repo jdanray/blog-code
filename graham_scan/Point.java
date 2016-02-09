@@ -38,13 +38,12 @@ public class Point implements Comparable<Point> {
         
         d =  (b.getX() - a.getX()) * (c.getY() - a.getY()) - (b.getY() - a.getY()) * (c.getX() - a.getX()); 
         
-        if (d > 0.0) {
+        if (d > 0.0)
             return -1;
-        } else if (d < 0.0) {
+        else if (d < 0.0)
             return 1;
-        } else {
+        else
             return 0;
-        }
     }
     
     public static double sqDist(Point a, Point b)  {
