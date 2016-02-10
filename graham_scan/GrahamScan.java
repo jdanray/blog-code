@@ -19,7 +19,6 @@ public class GrahamScan {
 		// sort points about the leftmost lowest point by polar angle
         	Arrays.sort(points, 1, points.length, points[0].polarOrder());
 
-        	// put the first three points on the hull
         	hull = new Stack<>();
         	for (int i = 0; i < 3; i++) {
         		hull.push(points[i]);
