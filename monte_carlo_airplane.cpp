@@ -4,44 +4,23 @@
 
 using namespace std;
 
-int main(int argc, char** argv)
+int* simulate_seating(int num_passengers, int num_simulations)
 {
-	// arg check
-	if (argc != 3)
-	{
-		cerr << "usage: " << argv[0] << " <# passengers> <# simulations>" << endl;
-		return -1;
-	}
-	
-	int n = atoi(argv[1]);
-	int num_simulations = atoi(argv[2]);
-	
-	if (n <= 0 || num_simulations <= 0)
-	{
-		cerr << "Input values should be integers and greater than zero." << endl;
-		return -1;
-	}
-	
-	// support vars
-	int i, j, r, k;
+	int i, j, r;
 
 	// got_seat[i] is the number of times that passenger i got their assigned seat
-	// so, if got_seat[2] == 531, then passenger #2 got their assigned seat 531 times
-	int* got_seat = new int[n];
-	for (i = 0; i < n; i++)
+	int* got_seat = new int[num_passengers];
+	for (i = 0; i < num_passengers; i++)
 		got_seat[i] = 0;
 
 	// assigned[i] is the seat that passenger i is assigned to
-	// so, if assigned[2] == 5, then passenger #2 is assigned to seat #5
-	int* assigned = new int[n];
+	int* assigned = new int[num_passengers];
 
 	// prev_assigned[i] is true iff seat i has already been assigned to a passenger
-	// so, if prev_assigned[2] == true, then seat #2 has already been assigned
-	bool* prev_assigned = new bool[n];
+	bool* prev_assigned = new bool[num_passengers];
 
 	// occupied[i] is true iff seat i is occupied
-	// so, if occupied[2] == true, then seat #2 is occupied
-	bool* occupied = new bool[n];
+	bool* occupied = new bool[num_passengers];
 
 	// seed rand()
 	srand(time(NULL));
@@ -50,15 +29,15 @@ int main(int argc, char** argv)
 	for (i = 0; i < num_simulations; i++)
 	{
 		// initially, nobody has been assigned a seat
-		for (j = 0; j < n; j++)
+		for (j = 0; j < num_passengers; j++)
 			prev_assigned[j] = false;
 
     		// assign everyone a seat at random
-		for (j = 0; j < n; j++)
+		for (j = 0; j < num_passengers; j++)
 		{
 			// make sure the seat hasn't already been assigned
 			do {
-				r = rand() % n;
+				r = rand() % num_passengers;
 			} while (prev_assigned[r]);
 
 			// make the assignment
@@ -67,18 +46,18 @@ int main(int argc, char** argv)
 		}
 	
 		// initially, nobody is occupying any seat
-		for (j = 0; j < n; j++)
+		for (j = 0; j < num_passengers; j++)
 			occupied[j] = false;
 
 		// the first passenger takes a seat at random
-		r = rand() % n;
+		r = rand() % num_passengers;
 		occupied[r] = true;
 		if (r == assigned[0])
 			got_seat[0]++;
 
 		// the rest of the passengers try to sit in their assigned seats
 		// if their seat is occupied, they take a seat at random
-		for (j = 1; j < n; j++)
+		for (j = 1; j < num_passengers; j++)
 		{
 			if (!occupied[assigned[j]])
 			{
@@ -89,7 +68,7 @@ int main(int argc, char** argv)
 				// that seat might already be occupied
 				// so, try until you find an unoccupied one
 				do {
-					r = rand() % n;
+					r = rand() % num_passengers;
 				} while (occupied[r]);
 
                                 // occupy the seat
@@ -98,8 +77,19 @@ int main(int argc, char** argv)
 		}
 	}
 
-	// print output
-	for (i = 0; i < n; i++)
+	// clean up
+	delete[] occupied;
+	delete[] assigned;
+	//delete[] got_seat;
+
+	return got_seat;
+}
+
+void display(int* got_seat, int num_passengers, int num_simulations)
+{
+	int i, k;
+	
+	for (i = 0; i < num_passengers; i++)
 	{
                 // display results
                 k = i + 1;
@@ -111,16 +101,33 @@ int main(int argc, char** argv)
                 // for 2 <= k <= n, the probability that passenger k gets their assigned seat is 1 - 1/(n + 2 - k)
                 cout << " (Exact probability: "; 
                 if (k == 1)
-                    cout << (1.0 / n) * 100;
+                    cout << (1.0 / num_passengers) * 100;
                 else
-                    cout << (1 - 1.0 / (n + 2 - k)) * 100;
+                    cout << (1 - 1.0 / (num_passengers + 2 - k)) * 100;
                 cout << "%)" << endl;
 	}
+}
 
-	// clean up
-	delete[] occupied;
-	delete[] assigned;
-	delete[] got_seat;
+int main(int argc, char** argv)
+{
+
+	// arg check
+	if (argc != 3)
+	{
+		cerr << "usage: " << argv[0] << " <# passengers> <# simulations>" << endl;
+		return -1;
+	}
+	
+	int num_passengers = atoi(argv[1]);
+	int num_simulations = atoi(argv[2]);
+	
+	if (num_passengers <= 0 || num_simulations <= 0)
+	{
+		cerr << "Input values should be integers and greater than zero." << endl;
+		return -1;
+	}
+
+	display(simulate_seating(num_passengers, num_simulations), num_passengers, num_simulations);
 
 	return 0;
 }
