@@ -110,7 +110,6 @@ void display(int* got_seat, int num_passengers, int num_simulations)
 
 int main(int argc, char** argv)
 {
-
 	// arg check
 	if (argc != 3)
 	{
