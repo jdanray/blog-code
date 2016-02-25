@@ -4,11 +4,11 @@ import java.util.Arrays;
 import java.util.Comparator;
 
 class Job {
-    public int start;
-    public int finish;
-    public int value;
+    int start;
+    int finish;
+    int value;
     
-    public Job(int start, int finish, int value) {
+    Job(int start, int finish, int value) {
         this.start = start;
         this.finish = finish;
         this.value = value;
