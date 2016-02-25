@@ -33,39 +33,31 @@ public class WeightedIntervalScheduling {
         while (lo <= hi) {
             mid = (lo + hi) / 2;
             if (jobs[mid].finish <= jobs[start_index].start) {
-                if (jobs[mid + 1].finish <= jobs[start_index].start) {
+                if (jobs[mid + 1].finish <= jobs[start_index].start)
                     lo = mid + 1;
-                } else {
+                else
                     return mid + 1;
-                }
-            } else {
+            } else
                 hi = mid - 1;
-            }
         }
         
         return 0;
     }
     
     static public int schedule(Job jobs[]) {
-        int i;
-        int n;
-        int p[];
+        int p;
         int V[];
         
         Arrays.sort(jobs, new JobComparator());
-        
-	n = jobs.length;
-        p = new int[n + 1];
-        p[0] = 0;
-        for (i = 0; i < n; i++)
-            p[i + 1] = bsearch(jobs, i);
 
-        V = new int[n + 1];
+        V = new int[jobs.length + 1];
 	V[0] = 0;
-        for (i = 1; i < n + 1; i++)
-            V[i] = Math.max(jobs[i - 1].value + V[p[i]], V[i - 1]);
+        for (int i = 1; i < jobs.length + 1; i++) {
+            p = bsearch(jobs, i - 1);
+            V[i] = Math.max(jobs[i - 1].value + V[p], V[i - 1]);
+        }
 
-	return V[n];
+	return V[jobs.length];
     }            
     
     public static void main(String[] args) {
