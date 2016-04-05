@@ -6,11 +6,9 @@ def fib_r(n):
 
 memo = {0: 1, 1: 1}
 def fib_r_memo(n):
-	if n in memo:
-		return memo[n]
-	else:
+	if n not in memo:
 		memo[n] = fib_r_memo(n - 1) + fib_r_memo(n - 2)
-		return memo[n]
+	return memo[n]
 
 def fib_dp(n):
 	memo = {}
