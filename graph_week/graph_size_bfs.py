@@ -45,7 +45,7 @@ def distances(graph, vertices, s):
 			continue
 			
 		for v in graph[u]:
-			if dist[v] == INFINITY:
+			if dist[v] > dist[u] + 1:
 				dist[v] = dist[u] + 1
 				q.append(v)
 
