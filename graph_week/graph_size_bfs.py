@@ -26,7 +26,8 @@ def eccentricities(graph, vertices):
 	return [e for e in ecc if e != None]
 
 def eccentricity(graph, vertices, u):
-	dist = [d for d in distances(graph, vertices, u).values() if d != INFINITY]
+	dist = distances(graph, vertices, u)
+	dist = [dist[v] for v in dist.keys() if v != u and dist[v] != INFINITY]
 	if dist: return max(dist)
 	else:    return None
 	
@@ -44,7 +45,7 @@ def distances(graph, vertices, s):
 			continue
 			
 		for v in graph[u]:
-			if dist[v] > dist[u] + 1:
+			if dist[v] == INFINITY:
 				dist[v] = dist[u] + 1
 				q.append(v)
 
