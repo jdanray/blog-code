@@ -42,10 +42,8 @@ def distance(graph, s, t):
 	dist[s] = 0
 	
 	q = [s]
-	
 	while q:
 		u = q.pop(0)
-		
 		if u == t:
 			return dist[u]
 	
