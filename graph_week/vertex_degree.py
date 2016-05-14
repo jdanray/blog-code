@@ -15,7 +15,9 @@ for edge in graph[1:]:
 	adj_matrix[v - 1][u - 1] = 1
 
 for n, row in enumerate(adj_matrix):
-	print('Node %i has a degree of %i\n' % (n + 1, sum(row)))
+	print('Node %i has a degree of %i' % (n + 1, sum(row)))
+	
+print('')
 
 for row in adj_matrix:
-	print(' '.join(map(str, row)))
+	print(' '.join(str(elem) for elem in row))
