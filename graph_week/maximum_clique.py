@@ -31,7 +31,7 @@ def maximum_clique(graph, vertices, clique=set()):
 		max_clique = clique
 
 	for v in vertices:
-		maximum_clique(graph, vertices & graph[v], clique | set([v]))
+		maximum_clique(graph, vertices & graph[v], clique | {v})
 
 file_location = 'maximum_clique_input.txt'
 graph, vertices = build_graph(file_location)
