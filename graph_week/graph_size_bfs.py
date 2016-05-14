@@ -20,24 +20,22 @@ def build_graph(file_location):
 	return graph, vertices
 
 def eccentricities(graph, vertices):
-	ecc = [eccentricity(graph, u) for u in vertices]
+	ecc = [eccentricity(graph, vertices, u) for u in vertices]
 	return [e for e in ecc if e != None]
 
-def eccentricity(graph, u):
+def eccentricity(graph, vertices, u):
 	dists = []
 
 	for v in vertices:
 		if u is not v:
-			d = distance(graph, u, v)
+			d = distance(graph, vertices, u, v)
 			if d is not None:
 				dists.append(d)
 			
-	if dists:
-		return max(dists)
-	else:
-		return None
+	if dists: return max(dists)
+	else:     return None
 	
-def distance(graph, s, t):
+def distance(graph, vertices, s, t):
 	dist = {}
 	for u in vertices: 
 		dist[u] = INFINITY
