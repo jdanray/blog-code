@@ -14,11 +14,14 @@ def build_graph(file_location):
 				
 	return graph
 
-def eccentricities(dist):
+def eccentricities(graph):
 	ecc = []
+	dist = floyd_warshall(graph)
+	
 	for u in dist:
 		d = [dist[u][v] for v in dist[u] if dist[u][v] != INFINITY]
 		if d: ecc.append(max(d))
+		
 	return ecc
 	
 def floyd_warshall(graph):
@@ -49,7 +52,8 @@ def floyd_warshall(graph):
 
 INFINITY = 100000
 file_location = 'graph_size_input.txt'
-ecc = eccentricities(floyd_warshall(build_graph(file_location)))
+graph = build_graph(file_location)
+ecc = eccentricities(graph)
 radius = min(ecc)
 diameter = max(ecc)
 print('radius: %i\ndiameter: %i' % (radius, diameter))
