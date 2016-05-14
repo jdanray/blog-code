@@ -1,3 +1,5 @@
+# https://www.reddit.com/r/dailyprogrammer/comments/4iut1x/20160511_challenge_266_intermediate_graph_radius/
+
 INFINITY = 100000
 
 def build_graph(file_location):
@@ -24,18 +26,11 @@ def eccentricities(graph, vertices):
 	return [e for e in ecc if e != None]
 
 def eccentricity(graph, vertices, u):
-	dists = []
-
-	for v in vertices:
-		if u is not v:
-			d = distance(graph, vertices, u, v)
-			if d is not None:
-				dists.append(d)
-			
-	if dists: return max(dists)
-	else:     return None
+	dist = [d for d in distances(graph, vertices, u).values() if d != INFINITY]
+	if dist: return max(dist)
+	else:    return None
 	
-def distance(graph, vertices, s, t):
+def distances(graph, vertices, s):
 	dist = {}
 	for u in vertices: 
 		dist[u] = INFINITY
@@ -44,18 +39,16 @@ def distance(graph, vertices, s, t):
 	q = [s]
 	while q:
 		u = q.pop(0)
-		if u == t:
-			return dist[u]
 	
 		if not u in graph:
 			continue
 			
 		for v in graph[u]:
-			if dist[v] == INFINITY:
+			if dist[v] > dist[u] + 1:
 				dist[v] = dist[u] + 1
 				q.append(v)
 
-	return None
+	return dist
 	
 file_location = 'graph_size_input.txt'	
 graph, vertices = build_graph(file_location)
