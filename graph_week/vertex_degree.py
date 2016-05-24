@@ -6,10 +6,11 @@ graph = """3
 
 graph = graph.splitlines()
 
-num_nodes = int(graph[0])
+num_nodes, edgelist = int(graph[0]), graph[1:]
+
 adj_matrix = [[0 for _ in range(num_nodes)] for _ in range(num_nodes)]
 
-for edge in graph[1:]:
+for edge in edgelist:
 	u, v = map(int, edge.split())
 	adj_matrix[u - 1][v - 1] = 1
 	adj_matrix[v - 1][u - 1] = 1
