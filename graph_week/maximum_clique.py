@@ -25,16 +25,10 @@ def build_graph(file_location):
 	return graph, vertices
 
 def maximum_clique(graph, vertices, clique=set()):
-	global max_clique
+	if not vertices:
+		return clique
 
-	if not vertices and len(clique) > len(max_clique):
-		max_clique = clique
-
-	for v in vertices:
-		maximum_clique(graph, vertices & graph[v], clique | {v})
+	return max((maximum_clique(graph, vertices & graph[v], clique | {v}) for v in vertices), key=len)
 
 file_location = 'maximum_clique_input.txt'
-graph, vertices = build_graph(file_location)
-max_clique = set()
-maximum_clique(graph, vertices)
-print(max_clique)
+print(maximum_clique(*build_graph(file_location)))
