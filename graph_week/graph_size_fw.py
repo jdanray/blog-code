@@ -1,22 +1,10 @@
 # https://www.reddit.com/r/dailyprogrammer/comments/4iut1x/20160511_challenge_266_intermediate_graph_radius/
 
-def build_graph(file_location):
-	graph = {}
-	
-	with open(file_location, 'r') as f:
-		next(f)
-		for edge in f:
-			u, v = map(int, edge.split())
-			if u in graph:
-				graph[u].add(v)
-			else:
-				graph[u] = {v}
-				
-	return graph
+import build_graph as bg
 
-def eccentricities(graph):
+def eccentricities(graph, vertices):
 	ecc = []
-	dist = floyd_warshall(graph)
+	dist = floyd_warshall(graph, vertices)
 	
 	for u in dist:
 		d = [dist[u][v] for v in dist[u] if dist[u][v] != INFINITY]
@@ -24,13 +12,7 @@ def eccentricities(graph):
 		
 	return ecc
 	
-def floyd_warshall(graph):
-	vertices = set()
-	for u in graph:
-		vertices.add(u)
-		for v in graph[u]:
-			vertices.add(v)
-
+def floyd_warshall(graph, vertices):
 	dist = {}
 	for u in vertices:
 		dist[u] = {}
@@ -52,8 +34,7 @@ def floyd_warshall(graph):
 
 INFINITY = 100000
 file_location = 'graph_size_input.txt'
-graph = build_graph(file_location)
-ecc = eccentricities(graph)
+ecc = eccentricities(*bg.build_graph(file_location, True))
 radius = min(ecc)
 diameter = max(ecc)
 print('radius: %i\ndiameter: %i' % (radius, diameter))
