@@ -34,16 +34,3 @@ def dijkstra(graph, s):
                     pq.insert(v, dist[v])
 
     return dist, path
-
-def main():
-    graph = {'a': [['b', 5], ['c', 10]], 'b': [['c', 2]], 'c': []}
-    
-    start = 'a'
-    dist, path = dijkstra(graph, start)
-    
-    end = 'c'
-    print(dist[end])
-    print(path[end])
-    
-if __name__ == "__main__":
-    main()
