@@ -24,12 +24,12 @@ def main():
 	file_location = 'highways.txt'
 	graph = build_graph(file_location)
 	start = 'Atlanta'
-	
+	destinations = ['New_York', 'Dallas', 'Chicago']
+
 	dists, paths = dijkstra(graph, start)
 	
-	destinations = ['New_York', 'Dallas', 'Chicago']
 	for dest in destinations:
 		print(dest, dists[dest], ' -> '.join(paths[dest]))
 
 if __name__ == "__main__":
-    main()
+	main()
