@@ -5,8 +5,17 @@ def preprocess(file_location):
 	examples = []
 	with open(file_location, 'r') as f:
 		for example in f:
-			infants, water_share, budget_res, physician_fee_freeze, aid, religion, satellite_ban, contras, missile, immigration, corp_cutback, education, sue, crime, exports, africa, party = example.rstrip().split(',')
-			examples.append({'infants': infants, 'water_share': water_share, 'budget_res': budget_res, 'physician_fee_freeze': physician_fee_freeze, 'aid': aid, 'religion': religion, 'satellite_ban': satellite_ban, 'contras': contras, 'missile': missile, 'immigration': immigration, 'corp_cutback': corp_cutback, 'education': education, 'sue': sue, 'crime': crime, 'exports': exports, 'africa': africa, 'party': party})
+			infants, water_share, budget_res, physician_fee_freeze, aid, \
+			religion, satellite_ban, contras, missile, immigration, \
+			corp_cutback, education, sue, crime, exports, africa, party = example.rstrip().split(',')
+			
+			examples.append({'infants': infants, 'water_share': water_share, \
+			'budget_res': budget_res, 'physician_fee_freeze': physician_fee_freeze, \
+			'aid': aid, 'religion': religion, 'satellite_ban': satellite_ban, \
+			'contras': contras, 'missile': missile, 'immigration': immigration, \
+			'corp_cutback': corp_cutback, 'education': education, 'sue': sue, 'crime': crime, \
+			'exports': exports, 'africa': africa, 'party': party})
+			
 	return examples
 
 # given a list of test examples, the target attribute, and a decision tree,
