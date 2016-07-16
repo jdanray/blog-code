@@ -1,56 +1,50 @@
 # https://icpcarchive.ecs.baylor.edu/external/35/3580.pdf
 
-import Queue
+from queue import Queue
 
 def goal(node):
-    return node[0] == node[1] and node[1] == node[2]
+	return node[0] == node[1] and node[1] == node[2]
 
 def children(node):
-    children = []
-    if node[0] >= node[1]:
-        children += [[node[0] - node[1], node[1] + node[1], node[2]]]
-    if node[0] >= node[2]:
-        children += [[node[0] - node[2], node[1], node[2] + node[2]]]
-    if node[1] >= node[0]:
-        children += [[node[0] + node[0], node[1] - node[0], node[2]]]
-    if node[1] >= node[2]:
-        children += [[node[0], node[1] - node[2], node[2] + node[2]]]
-    if node[2] >= node[0]:
-        children += [[node[0] + node[0], node[1], node[2] - node[0]]]
-    if node[2] >= node[1]:
-        children += [[node[0], node[1] + node[1], node[2] - node[1]]]
-    return children
+	children = []
+	
+	for i in range(3):
+		for j in range(3):
+			if i != j and node[i] >= node[j]:
+				child = list(node)
+				child[i] -= child[j]
+				child[j] += child[j]
+				children.append(tuple(child))
+
+	return children
 
 def shortest_path(source):
-    q = Queue.Queue()
-    q.put(source)
-    seen = [source]
-    p = {}
-    p[str(source)] = None
-    while not q.empty():
-	u = q.get()
-	if goal(u):
-		path = []
-		while u is not None:
-			path.append(u)
-			u = p[str(u)]
-		return path
-	for v in children(u):
-		if not v in seen:
-			seen.append(v)
-			q.put(v)
-			p[str(v)] = u
-    return None
+	seen = [source]
+	p = {source: []}
+	q = Queue()
+	q.put(source)
+
+	while not q.empty():
+		u = q.get()
+		if goal(u):
+			return p[u] + [u]
+			
+		for v in children(u):
+			if not v in seen:
+				seen.append(v)
+				q.put(v)
+				p[v] = p[u] + [u]
+				
+	return None
 
 def solve(s):
-    path = shortest_path(s)
-    if not path:
-        path = [s]
-    while path:
-        u = path.pop()
-        print str(u[0]).rjust(4) + str(u[1]).rjust(4) + str(u[2]).rjust(4)
-    print "============"
-
-solve([6,7,11])
-solve([15,18,3])
-solve([5,6,7])
+	path = shortest_path(s)
+	if not path:
+		path = [s]		
+	for u in path:
+		print(''.join(str(m).rjust(4) for m in u))
+	print('============')
+	
+solve((6,7,11))
+solve((15,18,3))
+solve((5,6,7))
