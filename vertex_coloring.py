@@ -1,6 +1,8 @@
 from random import choice
 
 def num_conflicts(variable, value, state, graph):
+	# neighboring vertices can't have the same color
+	# the number of conflicts is the number of neighbors that do have the same color
 	conflicting_neighbors = [neighbor for neighbor in graph[variable] if state[neighbor] == value]
 	return len(conflicting_neighbors)
 
@@ -10,7 +12,8 @@ def min_conflicts(problem, max_steps=1000):
 	
 	# for the initial assignment of values to variables,
 	# assign values to variables at random
-	curr_state = {var: choice(values) for var in variables}
+	curr_state = dict((var, choice(values)) for var in variables)
+	#curr_state = {var: choice(values) for var in variables}
 
 	for _ in range(max_steps):
 		# if no variables have any conflicts, then the problem is solved
@@ -36,13 +39,13 @@ def vertex_coloring(graph, colors):
 	return min_conflicts((graph, colors))
 	
 graph = {}
-graph['WA'] = {'NT', 'SA'}
-graph['NT'] = {'WA', 'SA', 'Q'}
-graph['SA'] = {'WA', 'NT', 'Q', 'NSW', 'V'}
-graph['V'] = {'SA', 'NSW'}
-graph['Q'] = {'NT', 'SA', 'NSW'}
-graph['T'] = {}
-graph['NSW'] = {'SA', 'Q', 'V'}
+graph['WA'] = ['NT', 'SA']
+graph['NT'] = ['WA', 'SA', 'Q']
+graph['SA'] = ['WA', 'NT', 'Q', 'NSW', 'V']
+graph['V'] = ['SA', 'NSW']
+graph['Q'] = ['NT', 'SA', 'NSW']
+graph['T'] = []
+graph['NSW'] = ['SA', 'Q', 'V']
 
 colors = ['red', 'green', 'blue']
 
