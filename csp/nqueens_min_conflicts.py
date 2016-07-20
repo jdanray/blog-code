@@ -1,5 +1,5 @@
 from min_conflicts import min_conflicts
-import nqueens
+import nqueens_backtrack
 
 def queens(N=8):
 	variables = list(range(N))	
@@ -27,5 +27,5 @@ print(soln)
 # test the min-conflicts solution
 # we know that the backtrack solution is correct
 # so, compare the answers
-solutions = nqueens.queens(N)
+solutions = nqueens_backtrack.queens(N)
 assert soln in solutions
