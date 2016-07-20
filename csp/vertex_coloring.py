@@ -31,6 +31,4 @@ solution = vertex_coloring(graph, colors)
 print(solution)
 
 # test the solution
-for u in graph:
-	for v in graph[u]:
-		assert solution[u] != solution[v]
+assert(solution[u] != solution[v] for u in graph for v in graph[u])
