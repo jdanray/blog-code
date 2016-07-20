@@ -1,5 +1,7 @@
 # https://icpcarchive.ecs.baylor.edu/external/35/3580.pdf
+# https://jdanray.wordpress.com/2015/03/25/marbles-in-three-baskets/
 
+#from Queue import Queue
 from queue import Queue
 
 def goal(node):
