@@ -1,9 +1,6 @@
 # https://icpcarchive.ecs.baylor.edu/external/35/3580.pdf
 # https://jdanray.wordpress.com/2015/03/25/marbles-in-three-baskets/
 
-#from Queue import Queue
-from queue import Queue
-
 def goal(node):
 	return node[0] == node[1] and node[1] == node[2]
 
@@ -23,18 +20,17 @@ def children(node):
 def shortest_path(source):
 	seen = [source]
 	p = {source: []}
-	q = Queue()
-	q.put(source)
+	queue = [source]
 
-	while not q.empty():
-		u = q.get()
+	while queue:
+		u = queue.pop(0)
 		if goal(u):
 			return p[u] + [u]
 			
 		for v in children(u):
 			if not v in seen:
 				seen.append(v)
-				q.put(v)
+				queue.append(v)
 				p[v] = p[u] + [u]
 				
 	return None
