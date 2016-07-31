@@ -12,7 +12,8 @@ def small_prime_list(n):
 	# so, to untag all the composite numbers from 2 to n, 
 	# take all the prime numbers from 2 to sqrt(n), and untag all of their multiples
 	i = 2
-	while i ** 2 <= n: 
+	rt = n ** 0.5
+	while i <= rt:
 		# untag all of the multiples of i from 2i, 3i, ..., (n/i)i
 		for j in range(2, (n // i) + 1):
 			b[j * i] = False
@@ -21,6 +22,6 @@ def small_prime_list(n):
 		i += 1
 		while not b[i]:
 			i += 1
-			
+
 	primes = [k for k in b if b[k]]
 	return primes
