@@ -1,4 +1,6 @@
 def small_prime_list(n):
+	# n must be greater than 1
+	# but more than 2 ** 20 is too computationally demanding
 	assert 2 <= n <= 2 ** 20	
 	
 	# construct all the integers from 2 to n
