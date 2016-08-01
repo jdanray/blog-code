@@ -43,12 +43,8 @@ int main()
 			{
 				int num_posters = 0;
 				for (int i = 0; i < num_billboards; i++)
-				{
 					if (w <= billboards[i][0] && h <= billboards[i][1])
-					{
 						num_posters++;
-					}
-				}
 
 				int total_area = w * h * num_posters;
 				if (total_area > max_total_area)
@@ -60,7 +56,7 @@ int main()
 			}
 		}
 		
-		delete[] billboards;		
+		delete[] billboards;
 	}
 	
 	for (int i = 0; i < num_problems; i++)
