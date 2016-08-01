@@ -1,19 +1,17 @@
 // https://icpcarchive.ecs.baylor.edu/external/75/7513.pdf
 
 #include <iostream>
-
 using namespace std;
 
 int main()
 {
-  int num_problems;
+	int num_problems;
 	cin >> num_problems;
 	
 	int** best_poster = new int*[num_problems];
 	
 	for (int i = 0; i < num_problems; i++)
-	{
-	
+	{	
 		int num_billboards;
 		cin >> num_billboards;
 		
@@ -32,13 +30,9 @@ int main()
 			billboards[j][1] = h;
 			
 			if (w > max_width)
-			{
 				max_width = w;
-			}
 			if (h > max_height)
-			{
 				max_height = h;
-			}
 		}
 		
 		int max_total_area = 0;
@@ -70,9 +64,7 @@ int main()
 	}
 	
 	for (int i = 0; i < num_problems; i++)
-	{
-		cout << best_poster[i][0] << " " << best_poster[i][1] << endl;	
-	}
+		cout << best_poster[i][0] << " " << best_poster[i][1] << endl;
 	
 	delete[] best_poster;
 
