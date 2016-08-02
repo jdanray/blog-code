@@ -1,12 +1,10 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-int* small_prime_list(int n) {
-	int* b;
+void small_prime_list(int n, int* b) {
 	int  i;
 	int  j;
 	
-	b = (int*) malloc(sizeof(int) * (n + 1));
 	for (i = 0; i <= n; i++) {
 		b[i] = 1;
 	}
@@ -23,8 +21,6 @@ int* small_prime_list(int n) {
 			i++;
 		} while (b[i] == 0);
 	}
-			
-	return b;
 }
 
 int main() {
@@ -32,14 +28,18 @@ int main() {
 	int  i;
 	int  n;
 	
-	n = 5;
-	b = small_prime_list(n);
+	n = 11;
+	b = (int*) malloc(sizeof(int) * (n + 1));
+
+	small_prime_list(n, b);
 	
 	for (i = 0; i <= n; i++) {
 		if (b[i]) {
 			printf("%i\n", i);
 		}
 	}
+	
+	free(b);
 
 	return 0;
 }
