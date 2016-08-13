@@ -4,7 +4,9 @@ def num_conflicts(variable, value, state, constraints):
 	# constraints is a dictionary of the form
 	# {variable1: [[var_1, relation_1], [var_2, relation_2], ..., [var_n, relation_n]], variable2: ...}
 	# where relation_i is a relation that the given value and the value of var_i must satisfy
-	
+
+	return sum(1 if not relation(variable, value, var, state[var]) else 0 for var, relation in constraints[variable])
+
 	conflicts = 0
 	
 	for cons in constraints[variable]:
