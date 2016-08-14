@@ -18,7 +18,7 @@ def children(node):
 	return children
 
 def shortest_path(source):
-	seen = [source]
+	seen = {source}
 	p = {source: []}
 	queue = [source]
 
@@ -29,7 +29,7 @@ def shortest_path(source):
 			
 		for v in children(u):
 			if not v in seen:
-				seen.append(v)
+				seen.add(v)
 				queue.append(v)
 				p[v] = p[u] + [u]
 				
