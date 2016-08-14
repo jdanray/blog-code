@@ -27,7 +27,7 @@ def successors(state):
 
 # breadth-first search
 def min_swaps(init_state):
-	seen = [init_state]
+	seen = {init_state}
 	queue = [init_state]
 	num_swaps = {init_state: 0}
 
@@ -38,7 +38,7 @@ def min_swaps(init_state):
 			
 		for succ in successors(state):
 			if succ not in seen:
-				seen.append(succ)
+				seen.add(succ)
 				queue.append(succ)
 				num_swaps[succ] = num_swaps[state] + 1
 
