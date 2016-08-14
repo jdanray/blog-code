@@ -33,13 +33,10 @@ def shortest_path(source):
 				queue.append(v)
 				p[v] = p[u] + [u]
 				
-	return None
+	return [source]
 
 def solve(s):
-	path = shortest_path(s)
-	if not path:
-		path = [s]		
-	for u in path:
+	for u in shortest_path(s):
 		print(''.join(str(m).rjust(4) for m in u))
 	print('============')
 	
