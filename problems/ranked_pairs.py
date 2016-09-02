@@ -23,7 +23,7 @@ def is_cyclic(graph):
 # given a set of preferences and a set of candidates,
 # for each pair of candidates (x, y),
 # count all the times that x was ranked ahead of y
-def tally(profile, candidates):				
+def tally(preferences, candidates):				
 	votes = {x: {y: 0 for y in candidates} for x in candidates}
 
 	for pref in preferences:
