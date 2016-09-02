@@ -4,11 +4,16 @@ def is_goal(state):
 	# the state is a goal-state iff 
 	# no black card comes before a red card
 	# so, check whether you see a black card and then a red card
+	
+	red = {'h', 'd'}
+	black = {'s', 'c'}
 	saw_black = False
+	
 	for card in state:
-		if saw_black and (card[-1] == 'h' or card[-1] == 'd'):
+		suit = card[-1]
+		if saw_black and suit in red:
 			return False
-		elif card[-1] == 's' or card[-1] == 'c':
+		elif suit in black:
 			saw_black = True
 
 	return True
