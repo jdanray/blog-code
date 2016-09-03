@@ -5,7 +5,7 @@ def bsearch_recur(nums, target, lo=0, hi=None):
 	if lo > hi:
 		return False
 
-	mid = (lo + hi) // 2
+	mid = lo + (hi - lo) // 2
 	if nums[mid] == target:
 		return mid
 	elif target > nums[mid]:
@@ -18,7 +18,7 @@ def bsearch_iter(nums, target):
 	hi = len(nums) - 1
 	
 	while lo <= hi:
-		mid = (lo + hi) // 2
+		mid = lo + (hi - lo) // 2
 		if nums[mid] == target:
 			return mid
 		elif target > nums[mid]:
