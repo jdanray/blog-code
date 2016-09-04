@@ -69,10 +69,10 @@ def ranked_pairs(preferences, candidates):
 	majs = majorities(votes, candidates)
 	
 	# sort
-	ranking = sorted(majs, key=lambda m: votes[m[0]][m[1]], reverse=True)
+	majs = sorted(majs, key=lambda m: votes[m[0]][m[1]], reverse=True)
 	
 	# lock in
-	dag = lock_in(ranking)
+	dag = lock_in(majs)
 
 	# order candidates by how many outgoing edges they have in the dag
 	return tuple(sorted(dag, key=lambda u: len(dag[u]), reverse=True))
