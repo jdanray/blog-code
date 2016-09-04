@@ -64,13 +64,14 @@ def lock_in(majorities):
 # given a set of individual preferences and a set of candidates,
 # aggregate the individual preferences into one overall group preferences
 def ranked_pairs(preferences, candidates):
-	# 1. tally
+	# tally
 	votes = tally(preferences, candidates)
+	majs = majorities(votes, candidates)
 	
-	# 2. sort
-	ranking = sorted(majorities(votes, candidates), key=lambda m: votes[m[0]][m[1]], reverse=True)
+	# sort
+	ranking = sorted(majs, key=lambda m: votes[m[0]][m[1]], reverse=True)
 	
-	# 3. lock in
+	# lock in
 	dag = lock_in(ranking)
 
 	# order candidates by how many outgoing edges they have in the dag
