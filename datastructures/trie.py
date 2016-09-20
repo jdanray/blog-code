@@ -13,7 +13,6 @@ class Trie(object):
 			if letter not in curr.edges:
 				curr.edges[letter] = TrieNode()
 			curr = curr.edges[letter]
-			
 		curr.leaf = True
 
 	def search(self, word):
@@ -23,7 +22,6 @@ class Trie(object):
 				curr = curr.edges[letter]
 			else:
 				return False
-				
 		return curr.leaf
 
 	def startsWith(self, prefix):
@@ -33,5 +31,4 @@ class Trie(object):
 				curr = curr.edges[letter]
 			else:
 				return False
-				
 		return True
