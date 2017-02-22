@@ -52,9 +52,8 @@ def lock_in(majorities):
 		
 		new_graph = dict(graph)
 		if u not in new_graph:
-			new_graph[u] = {v}
-		else:
-			new_graph[u].add(v)
+			new_graph[u] = {}
+		new_graph[u].add(v)
 			
 		if not is_cyclic(new_graph):
 			graph = new_graph
