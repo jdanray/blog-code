@@ -1,45 +1,50 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-void small_prime_list(int n, int* b) {
+void prime_list(int N, int* is_prime) {
 	int  i;
 	int  j;
 	
-	for (i = 0; i <= n; i++) {
-		b[i] = 1;
+        // initialize all numbers as prime
+	for (i = 0; i <= N; i++) {
+		is_prime[i] = 1;
 	}
-	b[0] = 0;
-	b[1] = 0;
 	
+        // starting with i=2, 
+        // process all numbers i<sqrt(N)
 	i = 2;
-	while (i * i <= n) {
-		for (j = 2; j <= n / i; j++) {
-			b[j * i] = 0;
+	while (i * i <= N) {
+                // mark all multiples of i as composite
+		for (j = 2; j <= N / i; j++) {
+			is_prime[j * i] = 0;
 		}
 		
+                // go to the next prime number
+                // while the current number is composite,
+                // try the next number in sequence
 		do {
 			i++;
-		} while (b[i] == 0);
+		} while (!is_prime[i]);
 	}
 }
 
 int main() {
-	int* b;
+	int* is_prime;
 	int  i;
-	int  n;
+	int  N;
 	
-	n = 11;
-	b = (int*) malloc(sizeof(int) * (n + 1));
+	N = 21;
+	is_prime = (int*) malloc(sizeof(int) * (N + 1));
 
-	small_prime_list(n, b);
+	prime_list(N, is_prime);
 	
-	for (i = 0; i <= n; i++) {
-		if (b[i]) {
+	for (i = 2; i <= N; i++) {
+		if (is_prime[i]) {
 			printf("%i\n", i);
 		}
 	}
 	
-	free(b);
+	free(is_prime);
 
 	return 0;
 }
