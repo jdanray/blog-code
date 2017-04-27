@@ -1,8 +1,8 @@
 from sys import argv
 from random import randint
 
-with open('diceware.wordlist.asc') as f:
-	wordlist = [word for word in f]
+with open('diceware.wordlist.asc') as wordfile:
+	wordlist = [word for word in wordfile]
 
 # roll an n-sided die nrolls times
 # combine the roll outcomes into a single number
@@ -15,17 +15,26 @@ def get_word(number):
 
 # given a specified number of words,
 # find that many words from the wordlist
-if len(argv) == 2:
+def main(args):
+	if len(args) != 2:
+		print('You must use one command-line argument.')
+		return False
+
 	try:
-		nwords = int(argv[1])
-		if nwords > 0:
-			print(' '.join(get_word(generate_number(6, 5)) for _ in range(nwords)))
-		else:
-			print('You must specify a positive number.')
+		nwords = int(args[1])
 	except ValueError:
 		print('You must specify an integer.')
-else:
-	print('You must use one command-line argument.')
+		return False
+
+	if nwords <= 0:
+		print('You must specify a positive number.')
+		return False
+	
+	print(' '.join(get_word(generate_number(6, 5)) for _ in range(nwords)))
+	return True
+
+if __name__ == '__main__':
+	main(argv)
 
 # example:
 # python diceware.py 7
