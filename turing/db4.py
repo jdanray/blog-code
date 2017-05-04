@@ -47,7 +47,6 @@ def main(args):
 
 	# turn a string-structured decimal representation
 	# into a list-structured binary representation
-	N = int(argv[1])
 	N = bin(N)
 	N = [int(b) for b in N[2:]]
 
