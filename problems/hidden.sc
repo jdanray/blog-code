@@ -11,11 +11,11 @@
         (else                      (hidden pwd (cdr msg)))))
 
 (define pwd '(a b c))
-(define msg '(H A P P Y B I R T H D A Y C A C E Y))
-(define msg '(T R A G I C B I R T H D A Y C A C E Y))
-(define msg '(H A P P Y B I R T H D A Y))
-(define msg '(S O M E C H O R E S A R E T O U G H))
-(define pwd '(S E C R E T))
-(define msg '(S O M E C H E E R S A R E T O U G H))
+(define msg '(h a p p y b i r t h d a y c a c e y))
+(define msg '(t r a g i c b i r t h d a y c a c e y))
+(define msg '(h a p p y b i r t h d a y))
+(define msg '(s o m e c h o r e s a r e t o u g h))
+(define pwd '(s e c r e t))
+(define msg '(s o m e c h e e r s a r e t o u g h))
 
 (hidden pwd msg)
