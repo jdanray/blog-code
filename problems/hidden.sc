@@ -1,0 +1,21 @@
+(define (in elem lst)
+  (cond ((null? lst)          #f)
+        ((eq? elem (car lst)) #t)
+        (else                 (in elem (cdr lst)))))
+
+(define (hidden pwd msg)
+  (cond ((null? pwd)               #t)
+        ((null? msg)               #f)
+        ((eq? (car msg) (car pwd)) (hidden (cdr pwd) (cdr msg)))
+        ((in (car msg) pwd)        #f)
+        (else                      (hidden pwd (cdr msg)))))
+
+(define pwd '(a b c))
+(define msg '(H A P P Y B I R T H D A Y C A C E Y))
+(define msg '(T R A G I C B I R T H D A Y C A C E Y))
+(define msg '(H A P P Y B I R T H D A Y))
+(define msg '(S O M E C H O R E S A R E T O U G H))
+(define pwd '(S E C R E T))
+(define msg '(S O M E C H E E R S A R E T O U G H))
+
+(hidden pwd msg)
