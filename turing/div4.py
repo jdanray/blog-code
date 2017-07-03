@@ -2,7 +2,8 @@ from sys import argv
 from tm import TuringMachine
 
 """
-This TM's head starts at square 0 and moves to the right until it reaches a blank square.
+This TM determines whether a given positive integer is divisible by 4.
+TM's head starts at square 0 and moves to the right until it reaches a blank square.
 Then TM's head moves one square to the left. Now TM's head is over the last bit of the given number N.
 If that bit is 1, then 4 does not divide N. TM enters 'NO' state and halts.
 If that bit is 0, then TM moves one square to the left. Now TM's head is over the second-to-last bit of N.
@@ -34,13 +35,11 @@ def main(args):
 	if len(args) != 2:
 		print('You must use one command-line argument.')
 		return False
-
 	try:
 		N = int(args[1])
 	except ValueError:
 		print('You must specify an integer.')
 		return False
-
 	if N <= 0:
 		print('You must specify a positive number.')
 		return False
@@ -57,8 +56,6 @@ def main(args):
 
 	# report the TM's determination
 	print(db4.state)
-
-	return True
 
 if __name__ == '__main__':
 	main(argv)
