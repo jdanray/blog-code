@@ -29,7 +29,7 @@ prior_model = build_matrix(PRIOR_MODEL_FILE)
 # the observations of each horse for each race
 observations = build_matrix(OBSBUSF_FILE)
 
-# given an observation or transition model and a prior probability distribution,
+# given an observation or transition model and a prior probablity distribution,
 # computes a probability distribution over random variables in our horse-racing world
 def predict(model, priors):
     prediction = [0.0] * NUM_BUSF
