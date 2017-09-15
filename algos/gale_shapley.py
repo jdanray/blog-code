@@ -34,11 +34,12 @@ def gale_shapley(mprefs, wprefs):
 		man = unengaged_men.pop(0)
 		woman = mprefs[man][next_woman[man]]
 		next_woman[man] += 1
-		if matching[woman] == None:
+		fiance = matching[woman]
+		if fiance == None:
 			matching[woman] = man
-		elif wrank[woman][man] < wrank[woman][matching[woman]]:
-			unengaged_men.append(matching[woman])
+		elif wrank[woman][man] < wrank[woman][fiance]:
 			matching[woman] = man
+			unengaged_men.append(fiance)
 		else:
 			unengaged_men.append(man)
 
