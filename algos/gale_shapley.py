@@ -11,15 +11,16 @@ def gale_shapley(mprefs, wprefs):
 	N = len(wprefs)
 	matching = [None] * N
 
-	# if wrank[i][j] == k, then
-	# man j is woman i's k-th choice
+	# if wrank[i][j] == N - k, then
+	# woman i ranks man j k places from the top rank
+	# so, if k == 0, then i ranks j at the top
 	wrank = [[None] * N for _ in range(N)]
 	for i, wp in enumerate(wprefs):
 		for k, j in enumerate(wp):
-			wrank[i][j] = k
+			wrank[i][j] = N - k
 
 	# if next_woman[i] == j, then 
-	# man i proposes to the j-th woman on his list next
+	# man i next proposes to the j-th woman on his list
 	# initially each man proposes to the zeroth (first) woman on his list
 	next_woman = [0] * N
 
@@ -31,17 +32,17 @@ def gale_shapley(mprefs, wprefs):
 	# if neither, the man remains unengaged and moves onto the next woman
 	unengaged_men = list(range(N))
 	while unengaged_men:
-		man = unengaged_men.pop(0)
+		man = unengaged_men[0]
 		woman = mprefs[man][next_woman[man]]
 		next_woman[man] += 1
 		fiance = matching[woman]
 		if fiance == None:
 			matching[woman] = man
-		elif wrank[woman][man] < wrank[woman][fiance]:
+			unengaged_men.pop(0)
+		elif wrank[woman][man] > wrank[woman][fiance]:
 			matching[woman] = man
+			unengaged_men.pop(0)
 			unengaged_men.append(fiance)
-		else:
-			unengaged_men.append(man)
 
 	return matching
 
