@@ -36,4 +36,3 @@ def count_change_dp(amount, denoms):
 print(count_change_recur(100, [50, 25, 10, 5, 1])) # 292
 print(count_change_memo(100, [50, 25, 10, 5, 1]))  # 292
 print(count_change_dp(100, [50, 25, 10, 5, 1]))    # 292
-print(memo)
