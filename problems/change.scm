@@ -5,7 +5,8 @@
   (cond ((= amount 0)   1)
         ((< amount 0)   0)
         ((null? denoms) 0)
-        (else           (+ (change (- amount (car denoms))
+        (else           (+ (change (- amount 
+                                      (car denoms))
                                    denoms)
                            (change amount
                                    (cdr denoms))))))
