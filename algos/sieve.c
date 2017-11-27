@@ -1,7 +1,9 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-void prime_list(int N, int* is_prime) {
+// the sieve of Erastosthenes
+
+void sieve(int N, int* is_prime) {
 	int  i;
 	int  j;
 	
@@ -10,8 +12,7 @@ void prime_list(int N, int* is_prime) {
 		is_prime[i] = 1;
 	}
 	
-        // starting with i=2, 
-        // process all numbers i<sqrt(N)
+        // remove all composite numbers
 	i = 2;
 	while (i * i <= N) {
                 // mark all multiples of i as composite
@@ -20,31 +21,37 @@ void prime_list(int N, int* is_prime) {
 		}
 		
                 // go to the next prime number
-                // while the current number is composite,
-                // try the next number in sequence
 		do {
 			i++;
 		} while (!is_prime[i]);
 	}
 }
 
-int main() {
-	int* is_prime;
-	int  i;
-	int  N;
-	
-	N = 21;
-	is_prime = (int*) malloc(sizeof(int) * (N + 1));
+int main(int argc, char* argv[]) {
+	int*  is_prime;
+	int   i;
+	long  N;
+	char* p;
 
-	prime_list(N, is_prime);
-	
+	// define N
+	if (argc > 1) {
+		N = strtol(argv[1], &p, 10);
+	} else {
+		N = 100;
+	}
+
+	// find all prime numbers from 2 to N
+	is_prime = (int*) malloc(sizeof(int) * (N + 1));
+	sieve(N, is_prime);
+
+	// report results
 	for (i = 2; i <= N; i++) {
 		if (is_prime[i]) {
-			printf("%i\n", i);
+			printf("%i ", i);
 		}
 	}
+	printf("\n");
 	
 	free(is_prime);
-
 	return 0;
 }
