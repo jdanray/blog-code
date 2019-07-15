@@ -1,3 +1,5 @@
+import testsort
+
 # given a list of numbers, 
 # perform an insertion sort on the list
 def insertion_sort(nums):
@@ -10,3 +12,5 @@ def insertion_sort(nums):
 		nums[j + 1] = key
 		
 	return nums
+
+testsort.test(insertion_sort)
