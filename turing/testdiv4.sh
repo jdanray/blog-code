@@ -1,10 +1,8 @@
 #!/bin/bash
 
-COUNTER=1
-let LIMIT=10
-while [ $COUNTER -le $LIMIT ]; do
-	let N=4*$COUNTER
-	echo $N
-	python div4.py $N
-	let COUNTER=COUNTER+1
+let LIMIT=20
+let N=1
+while [ $N -le $LIMIT ]; do
+	echo "$N -> $(python div4.py $N)"
+	let N=N+1
 done
