@@ -1,10 +1,12 @@
 class TuringMachine:
-	nsquares = 100
-	blank, yes, no = 'BLANK', 'YES', 'NO'
-	tape = [blank for _ in range(nsquares)]
-	table = {}
-
 	def __init__(self, init_head, init_state):
+		self.nsquares = 100
+		self.blank = 'BLANK'
+		self.yes = 'YES'
+		self.no = 'NO'
+		self.tape = [self.blank for _ in range(self.nsquares)]
+		self.table = {}
+
 		self.head = init_head
 		self.state = init_state	
 
