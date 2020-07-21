@@ -1,5 +1,5 @@
 # https://icpcarchive.ecs.baylor.edu/external/35/3580.pdf
-# https://jdanray.wordpress.com/2015/03/25/marbles-in-three-baskets/
+# https://jdanray.github.io/post/marbles/
 
 def goal(node):
 	return node[0] == node[1] and node[1] == node[2]
